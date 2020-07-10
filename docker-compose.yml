@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:10.5
+    container_name: djangoplicity-products2-db
+    restart: always
+    environment:
+      POSTGRES_DB: djangoplicity-products2
+      POSTGRES_USER: djangoplicity-products2
+      POSTGRES_PASSWORD: djangoplicity-products2
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "51432:5432"
+
+  web:
+    build: .
+    container_name: djangoplicity-products2
+    command: ["./scripts/command-dev.sh"]
+    volumes:
+      - ./djangoplicity:/app/djangoplicity
+      - ./test_project/:/app/test_project
+      - ./htmlcov:/app/htmlcov
+      - ./.coveragerc:/app/.coveragerc
+      - ./tests:/app/tests
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
+volumes:
+  pgdata:
