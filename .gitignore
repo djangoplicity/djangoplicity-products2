@@ -1,0 +1,9 @@
+*.pyc
+
+.idea/
+/*.egg-info/
+.tox/
+.env/
+htmlcov/*
+!htmlcov/.keep
+.coverage

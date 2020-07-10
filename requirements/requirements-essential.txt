@@ -1,12 +1,2 @@
 # Django==1.11.21
 setuptools
-xlwt
-
-# djangoplicity
-git+https://@github.com/djangoplicity/djangoplicity.git@develop
-
-# PostgreSQL python client
-psycopg2-binary==2.7.7
-
-# Asynchronous Task Queue
-celery==4.3.0

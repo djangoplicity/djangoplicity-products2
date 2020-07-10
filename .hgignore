@@ -1,0 +1,5 @@
+syntax: regexp
+^src/djangoplicity_products2\.egg-info$
+syntax: glob
+*.pyc
+.nfs*
