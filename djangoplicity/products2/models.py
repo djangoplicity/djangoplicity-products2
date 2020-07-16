@@ -96,7 +96,7 @@ class Application ( ArchiveModel, StandardArchiveInfo ):
             last_modified = True
             created = True
             published = True
-            rename_pk = ( 'products_application', 'id' )
+            rename_pk = ( 'products2_application', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         ordering = ['-priority', 'id']
@@ -112,7 +112,7 @@ class MiniSite( ArchiveModel, StandardArchiveInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MINISITE_ROOT
-            rename_pk = ('products_minisite', 'id')
+            rename_pk = ('products2_minisite', 'id')
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -130,7 +130,7 @@ class PaperModel ( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.PAPER_MODEL_ROOT
-            rename_pk = ('products_papermodel', 'id')
+            rename_pk = ('products2_papermodel', 'id')
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -148,7 +148,7 @@ class PlanetariumShow( ArchiveModel, StandardArchiveInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.PLANETARIUM_SHOW_ROOT
-            rename_pk = ( 'products_planetariumshow', 'id' )
+            rename_pk = ( 'products2_planetariumshow', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -166,7 +166,7 @@ class VirtualTour( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.VIRTUAL_TOUR_ROOT
-            rename_pk = ( 'products_virtualtour', 'id' )
+            rename_pk = ( 'products2_virtualtour', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -187,7 +187,7 @@ class KidsDrawing( ArchiveModel, StandardArchiveInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         class Meta (StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.KIDS_DRAWING_ROOT
-            rename_pk = ( 'products_kidsdrawing', 'id' )
+            rename_pk = ( 'products2_kidsdrawing', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( u'Kids Drawing' )
@@ -206,7 +206,7 @@ class PressKit( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.PRESSKIT_ROOT
-            rename_pk = ( 'products_presskit', 'id' )
+            rename_pk = ( 'products2_presskit', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -225,7 +225,7 @@ class Music( ArchiveModel, StandardArchiveInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MUSIC_ROOT
-            rename_pk = ('products_music', 'id')
+            rename_pk = ('products2_music', 'id')
 
     class Meta(StandardArchiveInfo.Meta):
         verbose_name_plural = 'music'
@@ -259,7 +259,7 @@ class Logo( ArchiveModel, StandardArchiveInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.LOGO_ROOT
-            rename_pk = ( 'products_logo', 'id' )
+            rename_pk = ( 'products2_logo', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -283,9 +283,9 @@ class OnlineArtAuthor ( ArchiveModel, StandardArchiveInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.ONLINE_ART_AUTHOR_ROOT
-            rename_pk = ( 'products_onlineartauthor', 'id' )
+            rename_pk = ( 'products2_onlineartauthor', 'id' )
             rename_fks = (
-                ( 'products_online_art', 'artist_id' ),
+                ( 'products2_online_art', 'artist_id' ),
             )
 
     class Meta( StandardArchiveInfo.Meta ):
@@ -307,7 +307,7 @@ class OnlineArt ( ArchiveModel, StandardArchiveInfo, ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.ONLINE_ART_ROOT
-            rename_pk = ( 'products_onlineart', 'id' )
+            rename_pk = ( 'products2_onlineart', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = 'Space Art'
@@ -329,7 +329,7 @@ class ElectronicCard( ArchiveModel, StandardArchiveInfo, ScreenInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.ELECTRONICCARD_ROOT
-            rename_pk = ( 'products_electroniccard', 'id' )
+            rename_pk = ( 'products2_electroniccard', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _('Electronic Card')
@@ -367,7 +367,7 @@ class Exhibition( ArchiveModel, StandardArchiveInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.EXHIBITION_ROOT
-            rename_pk = ( 'products_exhibition', 'id' )
+            rename_pk = ( 'products2_exhibition', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         ordering = ['title', '-group__priority', 'group_order', '-priority']
@@ -387,7 +387,7 @@ class FITSImage( ArchiveModel, StandardArchiveInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.FITS_IMAGE_ROOT
-            rename_pk = ( 'products_fitsimage', 'id' )
+            rename_pk = ( 'products2_fitsimage', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( 'FITS Liberator Image' )
@@ -421,7 +421,7 @@ class UserVideo( ArchiveModel, StandardArchiveInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.USER_VIDEO_ROOT
-            rename_pk = ( 'products_uservideo', 'id' )
+            rename_pk = ( 'products2_uservideo', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( 'User Video' )
@@ -442,7 +442,7 @@ class Presentation( ArchiveModel, StandardArchiveInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.PRESENTATION_ROOT
-            rename_pk = ( 'products_presentation', 'id' )
+            rename_pk = ( 'products2_presentation', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -468,7 +468,7 @@ class AnnualReport( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.ANNUAL_REPORT_ROOT
-            rename_pk = ( 'products_annualreport', 'id' )
+            rename_pk = ( 'products2_annualreport', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -494,7 +494,7 @@ class EducationalMaterial( ArchiveModel, StandardArchiveInfo, PrintInfo, Physica
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.EDUMATERIAL_ROOT
-            rename_pk = ( 'products_educationalmaterial', 'id' )
+            rename_pk = ( 'products2_educationalmaterial', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -519,7 +519,7 @@ class Media(ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MEDIA_ROOT
-            rename_pk = ( 'products_media', 'id' )
+            rename_pk = ( 'products2_media', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Medium" )
@@ -546,7 +546,7 @@ class Book( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.BOOK_ROOT
-            rename_pk = ( 'products_book', 'id' )
+            rename_pk = ( 'products2_book', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -568,7 +568,7 @@ class Brochure( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.BROCHURE_ROOT
-            rename_pk = ( 'products_brochure', 'id' )
+            rename_pk = ( 'products2_brochure', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -589,7 +589,7 @@ class Handout ( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.HANDOUT_ROOT
-            rename_pk = ( 'products_handout', 'id' )
+            rename_pk = ( 'products2_handout', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -615,7 +615,7 @@ class Flyer( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.FLYER_ROOT
-            rename_pk = ( 'products_flyer', 'id' )
+            rename_pk = ( 'products2_flyer', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -637,7 +637,7 @@ class Map( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MAP_ROOT
-            rename_pk = ( 'products_map', 'id' )
+            rename_pk = ( 'products2_map', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -660,7 +660,7 @@ class Stationery( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.STATIONERY_ROOT
-            rename_pk = ( 'products_stationery', 'id' )
+            rename_pk = ( 'products2_stationery', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name_plural = _( 'Stationery' )
@@ -680,7 +680,7 @@ class Merchandise( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MERCHANDISE_ROOT
-            rename_pk = ( 'products_merchandise', 'id' )
+            rename_pk = ( 'products2_merchandise', 'id' )
 
     def get_absolute_url( self ):
         return reverse( 'merchandise_detail', args=[str( self.id )] )
@@ -700,7 +700,7 @@ class Apparel( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.APPAREL_ROOT
-            rename_pk = ( 'products_apparel', 'id' )
+            rename_pk = ( 'products2_apparel', 'id' )
 
     def get_absolute_url( self ):
         return reverse( 'apparel_detail', args=[str( self.id )] )
@@ -722,7 +722,7 @@ class STECFNewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInf
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.STECFNEWSLETTER_ROOT
-            rename_pk = ( 'products_stecfnewsletter', 'id' )
+            rename_pk = ( 'products2_stecfnewsletter', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "STECF Newsletter" )
@@ -746,7 +746,7 @@ class CapJournal( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.CAPJOURNAL_ROOT
-            rename_pk = ( 'products_capjournal', 'id' )
+            rename_pk = ( 'products2_capjournal', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "CAPjournal" )
@@ -770,7 +770,7 @@ class Messenger( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MESSENGER_ROOT
-            rename_pk = ( 'products_messenger', 'id' )
+            rename_pk = ( 'products2_messenger', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Messenger" )
@@ -793,7 +793,7 @@ class ScienceInSchool( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInf
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.SCIENCEINSCHOOL_ROOT
-            rename_pk = ( 'products_scienceinschool', 'id' )
+            rename_pk = ( 'products2_scienceinschool', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Science In School" )
@@ -814,7 +814,7 @@ class Bulletin( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.BULLETIN_ROOT
-            rename_pk = ( 'products_bulletin', 'id' )
+            rename_pk = ( 'products2_bulletin', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Bulletin" )
@@ -833,7 +833,7 @@ class PostCard( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.POSTCARD_ROOT
-            rename_pk = ( 'products_postcard', 'id' )
+            rename_pk = ( 'products2_postcard', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( 'Postcard' )
@@ -876,7 +876,7 @@ class MountedImage( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MOUNTED_IMAGE_ROOT
-            rename_pk = ( 'products_mountedimage', 'id' )
+            rename_pk = ( 'products2_mountedimage', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -901,7 +901,7 @@ class PrintedPoster( ArchiveModel, StandardArchiveInfo, PhysicalInfo, ScreenInfo
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.PRINTEDPOSTER_ROOT
-            rename_pk = ( 'products_printedposter', 'id' )
+            rename_pk = ( 'products2_printedposter', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -925,7 +925,7 @@ class ConferencePoster( ArchiveModel, StandardArchiveInfo, PhysicalInfo, ScreenI
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.CONFERENCEPOSTER_ROOT
-            rename_pk = ( 'products_conferenceposter', 'id' )
+            rename_pk = ( 'products2_conferenceposter', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -950,7 +950,7 @@ class ElectronicPoster( ArchiveModel, StandardArchiveInfo, PhysicalInfo, ScreenI
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.ELECTRONICPOSTER_ROOT
-            rename_pk = ( 'products_electronicposter', 'id' )
+            rename_pk = ( 'products2_electronicposter', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -969,7 +969,7 @@ class Sticker( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.STICKER_ROOT
-            rename_pk = ( 'products_sticker', 'id' )
+            rename_pk = ( 'products2_sticker', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -991,7 +991,7 @@ class TechnicalDocument( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintI
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.TECHDOC_ROOT
-            rename_pk = ( 'products_technicaldocument', 'id' )
+            rename_pk = ( 'products2_technicaldocument', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -1037,7 +1037,7 @@ class Calendar( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
             last_modified = True
             created = True
             published = True
-            rename_pk = ( 'products_calendar', 'id' )
+            rename_pk = ( 'products2_calendar', 'id' )
             sort_fields = ['last_modified', 'release_date', 'priority', 'year', 'month', 'price']
 
     class Meta( StandardArchiveInfo.Meta ):
@@ -1096,7 +1096,7 @@ class SupernovaActivity( ArchiveModel, StandardArchiveInfo ):
 
     class Archive( StandardArchiveInfo.Archive ):
         class Meta( StandardArchiveInfo.Archive.Meta ):
-            rename_pk = ('products_supernovaactivity', 'id')
+            rename_pk = ('products2_supernovaactivity', 'id')
             root = archive_settings.SUPERNOVA_ACTIVITY_ROOT
             release_date = True
             last_modified = True
@@ -1120,7 +1120,7 @@ class IMAXFilm( ArchiveModel, StandardArchiveInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.IMAX_FILM_ROOT
-            rename_pk = ( 'products_imaxfilm', 'id' )
+            rename_pk = ( 'products2_imaxfilm', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
@@ -1138,7 +1138,7 @@ class EPublication( ArchiveModel, StandardArchiveInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.EPUBLICATION_ROOT
-            rename_pk = ( 'products_epublication', 'id' )
+            rename_pk = ( 'products2_epublication', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "ePublication" )
@@ -1179,7 +1179,7 @@ class ConferenceItem( ArchiveModel, StandardArchiveInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.CONFERENCEITEM_ROOT
-            rename_pk = ( 'products_conferenceitem', 'id' )
+            rename_pk = ( 'products2_conferenceitem', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Conference" )
@@ -1237,7 +1237,7 @@ class Model3d( ArchiveModel, StandardArchiveInfo ):
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MODEL3D_FILM_ROOT
-            rename_pk = ( 'products_model3d', 'id' )
+            rename_pk = ( 'products2_model3d', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "3D Model" )
