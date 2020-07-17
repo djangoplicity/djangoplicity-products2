@@ -93,3 +93,4 @@ class archive_settings:
     DONATION_ROOT = ARCHIVE_ROOT + 'donations'
     SUPERNOVA_ACTIVITY_ROOT = ARCHIVE_ROOT + 'supernovaactivities'
     MUSIC_ROOT = ARCHIVE_ROOT + 'music'
+    MIRROR_ROOT = ARCHIVE_ROOT + 'mirrors'
