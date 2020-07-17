@@ -758,6 +758,28 @@ class CapJournal( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
         return 'CapJournal'
 
 
+# =============================================================
+# Mirror
+# =============================================================
+class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
+        epub = ResourceManager(type=types.EPUBType)
+
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.MIRROR_ROOT
+            rename_pk = ( 'products2_mirror', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( "Mirror" )
+
+    def get_absolute_url( self ):
+        return reverse( 'mirrors_detail', args=[str( self.id )] )
+
+    def _get_subtype( self ):
+        return 'Mirror'
+
 
 # =============================================================
 # Messenger
