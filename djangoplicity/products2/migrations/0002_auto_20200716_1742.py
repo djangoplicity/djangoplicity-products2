@@ -48,24 +48,5 @@ class Migration(migrations.Migration):
                 'verbose_name': 'Mirror',
             },
             bases=(djangoplicity.archives.base.ArchiveModel, models.Model),
-        ),
-        migrations.AlterModelOptions(
-            name='donation',
-            options={'ordering': ['-priority', '-id']},
-        ),
-        migrations.AlterField(
-            model_name='conference',
-            name='account_no',
-            field=models.CharField(blank=True, help_text=b'', max_length=10),
-        ),
-        migrations.AlterField(
-            model_name='conference',
-            name='job',
-            field=models.CharField(blank=True, help_text=b'', max_length=4),
-        ),
-        migrations.AlterField(
-            model_name='conference',
-            name='jsp',
-            field=models.IntegerField(blank=True, help_text=b'', null=True, verbose_name='JSP'),
-        ),
+        )
     ]
