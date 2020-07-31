@@ -88,7 +88,6 @@ StationeryOptions = product_options( "stationery", "Stationery", "Stationery", T
 MapOptions = product_options( "maps", "Map", "Maps", True )
 MediaOptions = product_options( "media", "Medium", "Media", False )
 ConferenceItemOptions = product_options( "conferenceitems", "Conference", "Conferences", False )
-EducationalMaterialOptions = product_options( "education", "Material", "Educational Material", True )
 MiniSiteOptions = product_options( "minisites", "Mini-Site", "Mini-Sites", False, nopaper=True )
 MountedImageOptions = product_options( "mountedimages", "Mounted Image", "Mounted Images", False, extra_fields=(archive_image,), description_template='archives/mountedimage/object_description.html'  )
 MountedImageOptions.search_fields = ('id', 'title', 'description', 'credit', 'image__title', 'image__description')
@@ -218,6 +217,22 @@ class MusicOptions (StandardOptions):
             process_audio_derivatives(),
             process_audio_extras(),
         ]
+
+
+class EducationalMaterialOptions (StandardOptions):
+    urlname_prefix = 'education'
+
+    info = (
+        ( _(u'About the Education Material'), { 'fields': ( 'id', release_date, ), } ),
+    )
+
+    downloads = (
+        ( _(u'Images'), {'resources': ( 'original', 'large', 'screen'  ), 'icons': { 'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot'  } } ),
+        ( _(u'File Formats'), {'resources': ( 'pdf', 'pdfsm', 'zip'), 'icons': { 'pdf': 'doc', 'pdfsm': 'doc', 'zip': 'zip'  } } ),
+    )
+
+    class Queries(object):
+        default = AllPublicQuery(browsers=('normal', 'viewall'), verbose_name='Educational Material')
 
 
 class LogoOptions (StandardOptions):

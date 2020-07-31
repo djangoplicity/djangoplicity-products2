@@ -491,6 +491,7 @@ class EducationalMaterial( ArchiveModel, StandardArchiveInfo, PrintInfo, Physica
     class Archive( StandardArchiveInfo.Archive ):
         pdf = ResourceManager( type=types.PDFType )
         pdfsm = ResourceManager( type=types.PDFType )
+        zip = ResourceManager( type=types.ZipType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.EDUMATERIAL_ROOT
