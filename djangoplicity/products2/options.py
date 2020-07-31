@@ -105,6 +105,8 @@ ConferencePosterOptions = product_options( "conf_posters", "ConferencePoster", "
 ElectronicPosterOptions = product_options( "elec_posters", "ElectronicPoster", "ElectronicPosters", False, extra_fields=(pixel_size, resolution) )
 CapJournalOptions = product_options( "capjournals", "CAPjournal", "CAPjournals", True )
 MirrorOptions = product_options( "mirrors", "Mirror", "Mirrors", True )
+GeminiFocusOptions = product_options( "geminifocus", "Gemini Focus", "Gemini Focus", True )
+NOAONewsletterOptions = product_options( "noaonewsletters", "NOAO Newsletter", "NOAO Newsletters", True )
 STECFNewsletterOptions = product_options( "stecfnewsletters", "STECF Newsletter", "STECF Newsletters", True )
 MessengerOptions = product_options( "messengers", "Messenger", "Messengers", True )
 ScienceInSchoolOptions = product_options( "schools", "Science In School", "Science In School", True )

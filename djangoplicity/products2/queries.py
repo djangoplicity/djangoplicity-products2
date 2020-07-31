@@ -69,6 +69,26 @@ class MirrorQuery (AllPublicQuery):
         return ( qs, query_data )
 
 
+class GeminiFocusQuery (AllPublicQuery):
+    def queryset( self, model, options, request, **kwargs ):
+        now = datetime.now()
+        ( qs, query_data ) = super( GeminiFocusQuery, self ).queryset( model, options, request, **kwargs )
+        qs = qs.filter(type='geminifocus')
+        qs = self._filter_datetime( qs, now, 'release_date', False, True )
+        qs = self._filter_datetime( qs, now, 'embargo_date', False, True )
+        return ( qs, query_data )
+
+
+class NOAONewsletterQuery (AllPublicQuery):
+    def queryset( self, model, options, request, **kwargs ):
+        now = datetime.now()
+        ( qs, query_data ) = super( NOAONewsletterQuery, self ).queryset( model, options, request, **kwargs )
+        qs = qs.filter(type='noaonewsletter')
+        qs = self._filter_datetime( qs, now, 'release_date', False, True )
+        qs = self._filter_datetime( qs, now, 'embargo_date', False, True )
+        return ( qs, query_data )
+
+
 class STECFNewsletterQuery (AllPublicQuery):
     def queryset( self, model, options, request, **kwargs ):
         now = datetime.now()
