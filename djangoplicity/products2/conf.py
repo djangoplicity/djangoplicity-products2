@@ -94,3 +94,5 @@ class archive_settings:
     SUPERNOVA_ACTIVITY_ROOT = ARCHIVE_ROOT + 'supernovaactivities'
     MUSIC_ROOT = ARCHIVE_ROOT + 'music'
     MIRROR_ROOT = ARCHIVE_ROOT + 'mirrors'
+    GEMINI_FOCUS_ROOT = ARCHIVE_ROOT + 'geminifocus'
+    NOAO_NEWSLETTER_ROOT = ARCHIVE_ROOT + 'noaonewsletter'

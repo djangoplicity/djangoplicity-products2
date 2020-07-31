@@ -782,6 +782,53 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
 
 # =============================================================
+# Gemini Focus
+# =============================================================
+class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
+        epub = ResourceManager(type=types.EPUBType)
+
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.GEMINI_FOCUS_ROOT
+            rename_pk = ( 'products2_geminifocus', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( "Gemini Focus" )
+        verbose_name_plural = _( "Gemini Focus" )
+
+    def get_absolute_url( self ):
+        return reverse( 'geminifocus_detail', args=[str( self.id )] )
+
+    def _get_subtype( self ):
+        return 'GeminiFocus'
+
+
+# =============================================================
+# NOAO Newsletter
+# =============================================================
+class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
+        epub = ResourceManager(type=types.EPUBType)
+
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.NOAO_NEWSLETTER_ROOT
+            rename_pk = ( 'products2_noaonewsletter', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( "NOAO Newsletter" )
+
+    def get_absolute_url( self ):
+        return reverse( 'noaonewsletters_detail', args=[str( self.id )] )
+
+    def _get_subtype( self ):
+        return 'NOAONewsletter'
+
+
+# =============================================================
 # Messenger
 # =============================================================
 class Messenger( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
