@@ -251,6 +251,7 @@ def register_with_admin( admin_site ):
     register_if_installed( admin_site, ConferencePoster, ConferencePosterOptions )
     register_if_installed( admin_site, ConferenceItem, ConferenceItemOptions, extra={ 'fieldsets': [( 'Conference', {'fields': ( 'conference', ), } ), ] } )
     register_if_installed( admin_site, EducationalMaterial, EducationalMaterialOptions )
+    register_if_installed( admin_site, EducationalProgram, EducationalProgramOptions )
     register_if_installed( admin_site, ElectronicCard, ElectronicCardOptions )
     register_if_installed( admin_site, ElectronicPoster, ElectronicPosterOptions )
     register_if_installed( admin_site, Exhibition, ExhibitionOptions, extra={ 'list_display': ['group', 'group_order'], 'list_editable': ['group', 'group_order'], } )
