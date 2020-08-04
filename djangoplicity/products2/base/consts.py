@@ -44,6 +44,14 @@ COVER_CHOICES = (
     ('Softcover', 'Softcover'),
 )
 
+#
+# Educational Program validity
+#
+VALIDITY = (
+    ( 'past', _( 'Past' ) ),
+    ( 'current', _( 'Current' ) ),
+)
+
 LANGUAGE_CHOICES = (
     ('ab', 'Abkhaz'),
     ('aa', 'Afar'),

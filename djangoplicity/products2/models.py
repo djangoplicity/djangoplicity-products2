@@ -62,7 +62,7 @@ from djangoplicity.media.models import Image
 from djangoplicity.products2.base import *
 from djangoplicity.products2.conf import archive_settings
 from djangoplicity.translation.models import TranslationForeignKey
-from djangoplicity.products2.base.consts import DEFAULT_CREDIT
+from djangoplicity.products2.base.consts import DEFAULT_CREDIT, VALIDITY
 
 # SATCHMO RELATED
 # ===============
@@ -119,6 +119,23 @@ class MiniSite( ArchiveModel, StandardArchiveInfo ):
 
     def get_absolute_url(self):
         return reverse('minisites_detail', args=[str(self.id)])
+
+
+# =============================================================
+# Educational Programs
+# =============================================================
+class EducationalProgram( ArchiveModel, StandardArchiveInfo ):
+    validity = models.CharField( verbose_name=_( 'Validity' ), max_length=7, choices=VALIDITY, db_index=True )
+    class Archive( StandardArchiveInfo.Archive ):
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.EDUCATIONAL_PROGRAM_ROOT
+            rename_pk = ('products2_educationalprogram', 'id')
+
+    class Meta( StandardArchiveInfo.Meta ):
+        ordering = ['validity', 'id']
+
+    def get_absolute_url(self):
+        return reverse('educationalprograms_detail', args=[str(self.id)])
 
 
 # =============================================================

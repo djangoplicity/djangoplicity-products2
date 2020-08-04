@@ -96,3 +96,4 @@ class archive_settings:
     MIRROR_ROOT = ARCHIVE_ROOT + 'mirrors'
     GEMINI_FOCUS_ROOT = ARCHIVE_ROOT + 'geminifocus'
     NOAO_NEWSLETTER_ROOT = ARCHIVE_ROOT + 'noaonewsletter'
+    EDUCATIONAL_PROGRAM_ROOT = ARCHIVE_ROOT + 'educationalprograms'
