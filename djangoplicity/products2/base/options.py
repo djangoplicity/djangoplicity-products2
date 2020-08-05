@@ -91,6 +91,7 @@ class StandardOptions( ArchiveOptions ):
             ( 'ps', ( '.ps', '.gz' ) ),
             ( 'ppt', ( '.ppt', ) ),
             ( 'pps', ( '.pps', ) ),
+            ( 'svg', ( '.svg', 'svgz') ),
             ( 'eps', ( '.eps', ) ),
             ( 'illustrator', ( '.ai', ) ),
             ( 'flash', ( '.swf', ) ),

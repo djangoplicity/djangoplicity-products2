@@ -261,6 +261,7 @@ class Logo( ArchiveModel, StandardArchiveInfo ):
         original_trans = ImageResourceManager( verbose_name=_( 'Fullsize Transparent (RGB)' ), type=types.OriginalImageType )
         original_trans_cmyk = ImageResourceManager( verbose_name=_( 'Fullsize Transparent (CMYK)' ), type=types.OriginalImageType )
 
+        svg = ResourceManager( type=types.SvgType )
         eps = ResourceManager( type=types.EpsType )
         illustrator = ResourceManager( type=types.IllustratorType )
         transparent = ResourceManager( type=ImageFileType, verbose_name=_( 'Transparent PNG' ) )

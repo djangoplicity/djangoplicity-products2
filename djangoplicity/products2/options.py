@@ -244,7 +244,7 @@ class LogoOptions (StandardOptions):
     )
 
     downloads = (
-        ( _(u'Images'), {'resources': ( 'original', 'original_cmyk', 'original_trans', 'original_trans_cmyk', 'large', 'screen' ), 'icons': { 'original': 'phot', 'original_cmyk': 'phot', 'original_trans_cmyk': 'phot', 'original_trans': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot' } } ),
+        ( _(u'Images'), {'resources': ( 'original', 'original_cmyk', 'original_trans', 'original_trans_cmyk', 'large', 'screen', 'svg' ), 'icons': { 'original': 'phot', 'original_cmyk': 'phot', 'original_trans_cmyk': 'phot', 'original_trans': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot', 'svg': 'phot' } } ),
         ( _(u'File Formats'), {'resources': ( 'eps', 'illustrator', 'transparent', ), 'icons': { 'eps': 'phot', 'illustrator': 'phot', 'transparent': 'phot', } } )
     )
 
