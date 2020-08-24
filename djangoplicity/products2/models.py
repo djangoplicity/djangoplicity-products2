@@ -122,6 +122,23 @@ class MiniSite( ArchiveModel, StandardArchiveInfo ):
 
 
 # =============================================================
+# Mini-sites
+# =============================================================
+class CitizenScienceProgram( ArchiveModel, StandardArchiveInfo ):
+    validity = models.CharField( verbose_name=_( 'Validity' ), max_length=7, choices=VALIDITY, db_index=True )
+    class Archive( StandardArchiveInfo.Archive ):
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.CITIZEN_SCIENCE_PROGRAM_ROOT
+            rename_pk = ('products2_citizenscienceprogram', 'id')
+
+    class Meta( StandardArchiveInfo.Meta ):
+        pass
+
+    def get_absolute_url(self):
+        return reverse('citizenscienceprograms_detail', args=[str(self.id)])
+
+
+# =============================================================
 # Educational Programs
 # =============================================================
 class EducationalProgram( ArchiveModel, StandardArchiveInfo ):
