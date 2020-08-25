@@ -934,8 +934,9 @@ class Bulletin( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 # =============================================================
 # Postcards
 # =============================================================
-class PostCard( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
+class PostCard( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager(type=types.PDFType)
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.POSTCARD_ROOT
             rename_pk = ( 'products2_postcard', 'id' )
