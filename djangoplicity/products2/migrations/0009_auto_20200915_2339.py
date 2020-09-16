@@ -52,4 +52,8 @@ class Migration(migrations.Migration):
             name='noaonewsletter',
             options={'ordering': ['-priority', 'id'], 'verbose_name': 'NOAO Newsletter'},
         ),
+        migrations.AlterModelOptions(
+            name='electronicposter',
+            options={'ordering': ['-priority', 'id']},
+        ),
     ]
