@@ -1063,7 +1063,7 @@ class ElectronicPoster( ArchiveModel, StandardArchiveInfo, PhysicalInfo, ScreenI
             rename_pk = ( 'products2_electronicposter', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
-        pass
+        ordering = ['-priority', 'id']
 
     def get_absolute_url( self ):
         return reverse( 'elec_posters_detail', args=[str( self.id )] )
