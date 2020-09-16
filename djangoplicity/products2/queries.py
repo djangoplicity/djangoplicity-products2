@@ -174,3 +174,16 @@ class CalendarYearQuery( YearQuery ):
         ( qs, _args ) = super( YearQuery, self ).queryset( model, options, request, **kwargs )
         qs = qs.filter( year=year )
         return ( qs, { 'year': year } )
+
+
+class CurrentQuery (AllPublicQuery):
+    def queryset( self, model, options, request, **kwargs ):
+        ( qs, query_data ) = super( CurrentQuery, self ).queryset( model, options, request, **kwargs )
+        qs = qs.filter(validity='current')
+        return ( qs, query_data )
+
+class PastQuery (AllPublicQuery):
+    def queryset( self, model, options, request, **kwargs ):
+        ( qs, query_data ) = super( PastQuery, self ).queryset( model, options, request, **kwargs )
+        qs = qs.filter(validity='past')
+        return ( qs, query_data )
