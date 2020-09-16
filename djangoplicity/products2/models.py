@@ -115,7 +115,7 @@ class MiniSite( ArchiveModel, StandardArchiveInfo ):
             rename_pk = ('products2_minisite', 'id')
 
     class Meta( StandardArchiveInfo.Meta ):
-        pass
+        ordering = ['-priority', 'id']
 
     def get_absolute_url(self):
         return reverse('minisites_detail', args=[str(self.id)])
@@ -132,7 +132,7 @@ class CitizenScienceProgram( ArchiveModel, StandardArchiveInfo ):
             rename_pk = ('products2_citizenscienceprogram', 'id')
 
     class Meta( StandardArchiveInfo.Meta ):
-        pass
+        ordering = ['-priority', 'id']
 
     def get_absolute_url(self):
         return reverse('citizenscienceprograms_detail', args=[str(self.id)])
@@ -149,7 +149,7 @@ class EducationalProgram( ArchiveModel, StandardArchiveInfo ):
             rename_pk = ('products2_educationalprogram', 'id')
 
     class Meta( StandardArchiveInfo.Meta ):
-        ordering = ['validity', 'id']
+        ordering = ['-priority', 'id']
 
     def get_absolute_url(self):
         return reverse('educationalprograms_detail', args=[str(self.id)])
@@ -297,7 +297,7 @@ class Logo( ArchiveModel, StandardArchiveInfo ):
             rename_pk = ( 'products2_logo', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
-        pass
+        ordering = ['-priority', 'id']
 
     def get_absolute_url(self):
         return reverse('logos_detail', args=[str(self.id)])
@@ -533,7 +533,7 @@ class EducationalMaterial( ArchiveModel, StandardArchiveInfo, PrintInfo, Physica
             rename_pk = ( 'products2_educationalmaterial', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
-        pass
+        ordering = ['-priority', 'id']
 
     def get_absolute_url( self ):
         return reverse( 'education_detail', args=[str( self.id )] )
@@ -628,7 +628,7 @@ class Handout ( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
             rename_pk = ( 'products2_handout', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
-        pass
+        ordering = ['-priority', 'id']
 
     def get_absolute_url( self ):
         return reverse( 'handouts_detail', args=[str( self.id )] )
@@ -786,6 +786,7 @@ class CapJournal( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "CAPjournal" )
+        ordering = ['-priority', 'id']
 
     def get_absolute_url( self ):
         return reverse( 'capjournals_detail', args=[str( self.id )] )
@@ -809,6 +810,7 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Mirror" )
+        ordering = ['-priority', 'id']
 
     def get_absolute_url( self ):
         return reverse( 'mirrors_detail', args=[str( self.id )] )
@@ -833,6 +835,7 @@ class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Gemini Focus" )
         verbose_name_plural = _( "Gemini Focus" )
+        ordering = ['-priority', 'id']
 
     def get_absolute_url( self ):
         return reverse( 'geminifocus_detail', args=[str( self.id )] )
@@ -856,6 +859,7 @@ class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "NOAO Newsletter" )
+        ordering = ['-priority', 'id']
 
     def get_absolute_url( self ):
         return reverse( 'noaonewsletters_detail', args=[str( self.id )] )
