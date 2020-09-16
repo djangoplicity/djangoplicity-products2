@@ -90,7 +90,6 @@ MediaOptions = product_options( "media", "Medium", "Media", False )
 ConferenceItemOptions = product_options( "conferenceitems", "Conference", "Conferences", False )
 MiniSiteOptions = product_options( "minisites", "Mini-Site", "Mini-Sites", False, nopaper=True )
 CitizenScienceProgramOptions = product_options( "citizenscienceprograms", "Citizen Science Program", " Citizen Science Programs", False, nopaper=True )
-EducationalProgramOptions = product_options( "educationalprograms", "Educational Program", "Educational Programs", False, nopaper=True )
 MountedImageOptions = product_options( "mountedimages", "Mounted Image", "Mounted Images", False, extra_fields=(archive_image,), description_template='archives/mountedimage/object_description.html'  )
 MountedImageOptions.search_fields = ('id', 'title', 'description', 'credit', 'image__title', 'image__description')
 MerchandiseOptions = product_options( "merchandise", "Merchandise", "Merchandise", False )
@@ -275,6 +274,18 @@ class CalendarOptions (StandardOptions):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Calendars" )
         year = CalendarYearQuery( browsers=( 'normal', 'viewall' ), verbose_name="Calendar: %d")
 
+
+class EducationalProgramOptions( StandardOptions ):
+    urlname_prefix = 'educationalprograms'
+
+    info = (
+        ( _( u'About the Educational Program' ), { 'links': ( shop_link, ), 'fields': ( 'id', release_date, ), } ),
+    )
+
+    class Queries(object):
+        default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name='Educational Programs' )
+        current = CurrentQuery( browsers=( 'normal', 'viewall' ), verbose_name='Educational Programs: Current' )
+        past = PastQuery( browsers=( 'normal', 'viewall' ), verbose_name='Educational Programs: Past' )
 
 class OnlineArtOptions ( StandardOptions ):
 
