@@ -52,7 +52,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.utils.translation import ugettext_lazy as _
-
+from django.utils.encoding import python_2_unicode_compatible
 from djangoplicity.archives import fields as archivesfields
 from djangoplicity.archives.base import ArchiveModel
 from djangoplicity.archives.contrib import types
@@ -306,6 +306,7 @@ class Logo( ArchiveModel, StandardArchiveInfo ):
 # =============================================================
 # Art
 # =============================================================
+@python_2_unicode_compatible
 class OnlineArtAuthor ( ArchiveModel, StandardArchiveInfo ):
     title = None  # Overwrite inherited field
 
@@ -329,7 +330,7 @@ class OnlineArtAuthor ( ArchiveModel, StandardArchiveInfo ):
     def get_absolute_url( self ):
         return reverse( 'artists_detail', args=[str( self.id )] )
 
-    def __unicode__( self ):
+    def __str__( self ):
         return self.name
 
 
@@ -377,6 +378,7 @@ class ElectronicCard( ArchiveModel, StandardArchiveInfo, ScreenInfo ):
 # =============================================================
 # Exhibition
 # =============================================================
+@python_2_unicode_compatible
 class ExhibitionGroup( models.Model ):
     name = models.CharField( max_length=255 )
     priority = archivesfields.PriorityField( default=0 )
@@ -384,7 +386,7 @@ class ExhibitionGroup( models.Model ):
     class Meta:
         pass
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -1131,7 +1133,7 @@ MONTHS_CHOICES = (
     ( 12, _( 'December' ) ),
 )
 
-
+@python_2_unicode_compatible
 class Calendar( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     year = models.CharField( max_length=4, blank=False, null=False, )
     month = archivesfields.ChoiceField( choices=MONTHS_CHOICES, blank=True, default=0 )
@@ -1159,20 +1161,21 @@ class Calendar( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     def _get_subtype( self ):
         return 'Calendar'
 
-    def __unicode__( self ):
+    def __str__( self ):
         if self.month != 0:
             return 'Calendar %s %s' % ( date( year=1901, month=self.month, day=1 ).strftime( '%b' ), self.year )
         else:
             return 'Calendar %s' % self.year
 
 
+@python_2_unicode_compatible
 class Donation( ArchiveModel, StandardArchiveInfo ):
     """
     Donations
     """
     weight = 0
 
-    def __unicode__( self ):
+    def __str__( self ):
         return "%s - %s " % ( self.id, self.title )
 
     class Archive( StandardArchiveInfo.Archive ):
@@ -1191,13 +1194,14 @@ class Donation( ArchiveModel, StandardArchiveInfo ):
         return 'Donation'
 
 
+@python_2_unicode_compatible
 class SupernovaActivity( ArchiveModel, StandardArchiveInfo ):
     """
     SupernovaActivities
     """
     weight = 0
 
-    def __unicode__( self ):
+    def __str__( self ):
         return "%s - %s " % ( self.id, self.title )
 
     class Meta:
@@ -1298,6 +1302,7 @@ class ConferenceItem( ArchiveModel, StandardArchiveInfo ):
         return 'ConferenceItem'
 
 
+@python_2_unicode_compatible
 class Conference( models.Model ):
     """
     A conference groups together related items (registration fee, dinner tickets etc), and
@@ -1322,7 +1327,7 @@ class Conference( models.Model ):
         verbose_name = _( "conference type" )
         verbose_name_plural = _( "conference type" )
 
-    def __unicode__( self ):
+    def __str__( self ):
         return "%s - %s " % ( self.id, self.title )
 
     @classmethod
@@ -1363,6 +1368,7 @@ class Model3d( ArchiveModel, StandardArchiveInfo ):
 # =============================================================
 # Media visits
 # =============================================================
+@python_2_unicode_compatible
 class Visit( ArchiveModel, models.Model ):
     """
     Archive of media visits
@@ -1388,5 +1394,5 @@ class Visit( ArchiveModel, models.Model ):
     class Meta:
         ordering = ['-release_date']
 
-    def __unicode__( self ):
+    def __str__( self ):
         return "%s: %s" % ( self.id, self.title)
