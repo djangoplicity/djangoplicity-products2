@@ -335,7 +335,7 @@ class OnlineArtAuthor ( ArchiveModel, StandardArchiveInfo ):
 
 
 class OnlineArt ( ArchiveModel, StandardArchiveInfo, ):
-    artist = models.ForeignKey( OnlineArtAuthor )
+    artist = models.ForeignKey( OnlineArtAuthor, on_delete=models.CASCADE )
     credit = None  # Overwrite inherited website.
 
     class Archive( StandardArchiveInfo.Archive ):
@@ -391,7 +391,7 @@ class ExhibitionGroup( models.Model ):
 
 
 class Exhibition( ArchiveModel, StandardArchiveInfo ):
-    group = models.ForeignKey( ExhibitionGroup, blank=True, null=True )
+    group = models.ForeignKey( ExhibitionGroup, blank=True, null=True, on_delete=models.CASCADE)
     group_order = models.PositiveIntegerField( blank=True, null=True )
 
     class Archive( StandardArchiveInfo.Archive ):
@@ -1277,7 +1277,7 @@ class ConferenceItem( ArchiveModel, StandardArchiveInfo ):
     """
     # Since we shouldn't add any shipping costs to conference items, we set the weight to 0. (attr required by ShopModel)
     weight = 0
-    conference = models.ForeignKey( 'products2.Conference' )
+    conference = models.ForeignKey( 'products2.Conference', on_delete=models.CASCADE )
 
     def save( self, **kwargs ):
         if self.conference and self.conference.job:
@@ -1376,7 +1376,7 @@ class Visit( ArchiveModel, models.Model ):
     id = archivesfields.IdField()
     title = archivesfields.TitleField()
     description = archivesfields.DescriptionField( blank=True )
-    image = models.ForeignKey( Image, null=True, blank=True )
+    image = models.ForeignKey( Image, null=True, blank=True, on_delete=models.CASCADE )
 
     def get_absolute_url( self ):
         return "%s?search=%s" % ( reverse( 'visits_defaultquery' ), self.id )
