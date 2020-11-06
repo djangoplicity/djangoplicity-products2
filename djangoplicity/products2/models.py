@@ -956,6 +956,26 @@ class PostCard( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
 
 
 # =============================================================
+# Advertisings
+# =============================================================
+class Advertising( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager(type=types.PDFType)
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.ADVERTISING_ROOT
+            rename_pk = ( 'products2_advertising', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( 'Advertising' )
+
+    def get_absolute_url( self ):
+        return reverse( 'advertisings_detail', args=[str( self.id )] )
+
+    def _get_subtype( self ):
+        return 'Advertising'
+
+
+# =============================================================
 # Mounted Images
 # =============================================================
 class MountedImage( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
