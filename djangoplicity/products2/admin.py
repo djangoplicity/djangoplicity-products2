@@ -269,6 +269,7 @@ def register_with_admin( admin_site ):
     register_if_installed( admin_site, PaperModel, PaperModelOptions )
     register_if_installed( admin_site, PlanetariumShow, PlanetariumShowOptions )
     register_if_installed( admin_site, PostCard, PostCardOptions )
+    register_if_installed( admin_site, Advertisement, AdvertisementOptions )
     register_if_installed( admin_site, Presentation, PresentationOptions )
     register_if_installed( admin_site, PressKit, PressKitOptions )
     register_if_installed( admin_site, PrintedPoster, PrintedPosterOptions )
