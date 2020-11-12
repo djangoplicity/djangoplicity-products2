@@ -98,4 +98,4 @@ class archive_settings:
     NOAO_NEWSLETTER_ROOT = ARCHIVE_ROOT + 'noaonewsletter'
     EDUCATIONAL_PROGRAM_ROOT = ARCHIVE_ROOT + 'educationalprograms'
     CITIZEN_SCIENCE_PROGRAM_ROOT = ARCHIVE_ROOT + 'citizenscienceprograms'
-    ADVERTISEMET_ROOT = ARCHIVE_ROOT + 'advertisements'
+    ADVERTISEMET_ROOT = ARCHIVE_ROOT + 'abc'
