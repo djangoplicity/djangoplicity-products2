@@ -48,7 +48,6 @@ The enable items in an product archive to be sold, the archive must:
 from datetime import date
 
 from django.contrib.sites.models import Site
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.utils.translation import ugettext_lazy as _
@@ -63,6 +62,13 @@ from djangoplicity.products2.base import *
 from djangoplicity.products2.conf import archive_settings
 from djangoplicity.translation.models import TranslationForeignKey
 from djangoplicity.products2.base.consts import DEFAULT_CREDIT, VALIDITY
+
+
+import django
+if django.VERSION >= (2, 0):
+    from django.urls import reverse
+else:
+    from django.core.urlresolvers import reverse
 
 # SATCHMO RELATED
 # ===============
@@ -961,7 +967,7 @@ class PostCard( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
 # Mounted Images
 # =============================================================
 class MountedImage( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
-    image = TranslationForeignKey( Image )
+    image = TranslationForeignKey( Image, on_delete=models.CASCADE )
 
     def __init__( self, *args, **kwargs ):
         # We override __init__ to prevent StandardArchiveInfo from

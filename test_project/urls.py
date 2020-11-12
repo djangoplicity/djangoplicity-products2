@@ -32,7 +32,7 @@ from djangoplicity.products2.options import CalendarOptions, LogoOptions, Exhibi
 
 
 urlpatterns = [
-    url(r'^admin/', include(admin_site.urls)),
+    url(r'^admin/', admin_site.urls),
     url(r'^admin/import/', include('djangoplicity.archives.importer.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
 
