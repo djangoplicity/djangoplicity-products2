@@ -10,4 +10,4 @@ from djangoplicity.archives.urls import urlpatterns_for_options
 from djangoplicity.products2.options import *
 
 
-urlpatterns = urlpatterns_for_options( VideoBackgroundOptions )
+urlpatterns = urlpatterns_for_options( StickerOptions )
