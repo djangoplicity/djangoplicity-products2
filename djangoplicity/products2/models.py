@@ -810,7 +810,7 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Mirror" )
-        ordering = ['-priority', 'id']
+        ordering = ['-priority', '-id']
 
     def get_absolute_url( self ):
         return reverse( 'mirrors_detail', args=[str( self.id )] )
@@ -835,7 +835,7 @@ class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Gemini Focus" )
         verbose_name_plural = _( "Gemini Focus" )
-        ordering = ['-priority', 'id']
+        ordering = ['-priority', '-id']
 
     def get_absolute_url( self ):
         return reverse( 'geminifocus_detail', args=[str( self.id )] )
@@ -859,7 +859,7 @@ class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "NOAO Newsletter" )
-        ordering = ['-priority', 'id']
+        ordering = ['-priority', '-id']
 
     def get_absolute_url( self ):
         return reverse( 'noaonewsletters_detail', args=[str( self.id )] )
