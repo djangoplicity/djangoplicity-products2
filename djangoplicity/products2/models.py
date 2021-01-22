@@ -810,7 +810,7 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Mirror" )
-        ordering = ['-priority', '-id']
+        ordering = ['-priority', 'id']
 
     def get_absolute_url( self ):
         return reverse( 'mirrors_detail', args=[str( self.id )] )
@@ -835,7 +835,7 @@ class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Gemini Focus" )
         verbose_name_plural = _( "Gemini Focus" )
-        ordering = ['-priority', '-id']
+        ordering = ['-priority', 'id']
 
     def get_absolute_url( self ):
         return reverse( 'geminifocus_detail', args=[str( self.id )] )
@@ -859,7 +859,7 @@ class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "NOAO Newsletter" )
-        ordering = ['-priority', '-id']
+        ordering = ['-priority', 'id']
 
     def get_absolute_url( self ):
         return reverse( 'noaonewsletters_detail', args=[str( self.id )] )
@@ -1109,6 +1109,25 @@ class Sticker( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
 
     def _get_subtype(self):
         return 'Sticker'
+
+
+# =============================================================
+# VideoBackground
+# =============================================================
+class VideoBackground( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.VIDEO_BACKGROUND_ROOT
+            rename_pk = ( 'products2_videobackground', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        pass
+
+    def get_absolute_url(self):
+        return reverse('videobackgrounds_detail', args=[str(self.id)])
+
+    def _get_subtype(self):
+        return 'Video Background'
 
 
 # =============================================================
