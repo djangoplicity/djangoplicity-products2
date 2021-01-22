@@ -1112,6 +1112,25 @@ class Sticker( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
 
 
 # =============================================================
+# VideoBackground
+# =============================================================
+class VideoBackground( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.VIDEO_BACKGROUND_ROOT
+            rename_pk = ( 'products2_videobackground', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        pass
+
+    def get_absolute_url(self):
+        return reverse('videobackgrounds_detail', args=[str(self.id)])
+
+    def _get_subtype(self):
+        return 'Video Background'
+
+
+# =============================================================
 # Technical Documents
 # =============================================================
 class TechnicalDocument( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
