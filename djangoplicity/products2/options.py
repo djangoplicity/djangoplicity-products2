@@ -99,7 +99,7 @@ PlanetariumShowOptions = product_options( "planetariumshows", "Planetarium Show"
 PostCardOptions = product_options( "postcards", "Postcard", "Postcards", False )
 AdvertisementOptions = product_options( "advertisements", "Advertisement", "Advertisements", False )
 StickerOptions = product_options( "stickers", "Sticker", "Stickers", False )
-VideoBackgroundOptions = product_options( "videobackgrounds", "Video background", "Video Backgrounds", False )
+VideoConferenceBackgroundOptions = product_options( "videoconferencebackgrounds", "Video Conference Background", "Video Conference Backgrounds", False )
 TechnicalDocumentOptions = product_options( "techdocs", "Document", "Technical Documents", True )
 VirtualTourOptionsSC = product_options( "virtualtours", "Virtual Tour", "Virtual Tours", False )
 PrintedPosterOptions = product_options( "print_posters", "PrintedPoster", "PrintedPosters", False, extra_fields=(pixel_size, resolution) )
