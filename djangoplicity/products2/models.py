@@ -1112,22 +1112,22 @@ class Sticker( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
 
 
 # =============================================================
-# VideoBackground
+# Video Conference Backgrounds
 # =============================================================
-class VideoBackground( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
+class VideoConferenceBackground( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         class Meta( StandardArchiveInfo.Archive.Meta ):
-            root = archive_settings.VIDEO_BACKGROUND_ROOT
-            rename_pk = ( 'products2_videobackground', 'id' )
+            root = archive_settings.VIDEO_CONFERENCE_BACKGROUND_ROOT
+            rename_pk = ( 'products2_videoconferencebackground', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
         pass
 
     def get_absolute_url(self):
-        return reverse('videobackgrounds_detail', args=[str(self.id)])
+        return reverse('videoconferencebackgrounds_detail', args=[str(self.id)])
 
     def _get_subtype(self):
-        return 'Video Background'
+        return 'VideoConferenceBackground'
 
 
 # =============================================================

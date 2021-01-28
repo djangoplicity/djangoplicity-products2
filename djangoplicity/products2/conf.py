@@ -99,4 +99,4 @@ class archive_settings:
     EDUCATIONAL_PROGRAM_ROOT = ARCHIVE_ROOT + 'educationalprograms'
     CITIZEN_SCIENCE_PROGRAM_ROOT = ARCHIVE_ROOT + 'citizenscienceprograms'
     ADVERTISEMET_ROOT = ARCHIVE_ROOT + 'abc'
-    VIDEO_BACKGROUND_ROOT = ARCHIVE_ROOT + 'videobackgrounds'
+    VIDEO_CONFERENCE_BACKGROUND_ROOT = ARCHIVE_ROOT + 'videoconferencebackgrounds'
