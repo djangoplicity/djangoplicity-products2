@@ -127,6 +127,11 @@ class MiniSite( ArchiveModel, StandardArchiveInfo ):
 class CitizenScienceProgram( ArchiveModel, StandardArchiveInfo ):
     validity = models.CharField( verbose_name=_( 'Validity' ), max_length=7, choices=VALIDITY, db_index=True )
     class Archive( StandardArchiveInfo.Archive ):
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.CITIZEN_SCIENCE_PROGRAM_ROOT
             rename_pk = ('products2_citizenscienceprogram', 'id')
@@ -144,6 +149,11 @@ class CitizenScienceProgram( ArchiveModel, StandardArchiveInfo ):
 class EducationalProgram( ArchiveModel, StandardArchiveInfo ):
     validity = models.CharField( verbose_name=_( 'Validity' ), max_length=7, choices=VALIDITY, db_index=True )
     class Archive( StandardArchiveInfo.Archive ):
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.EDUCATIONAL_PROGRAM_ROOT
             rename_pk = ('products2_educationalprogram', 'id')
@@ -527,6 +537,11 @@ class EducationalMaterial( ArchiveModel, StandardArchiveInfo, PrintInfo, Physica
         pdf = ResourceManager( type=types.PDFType )
         pdfsm = ResourceManager( type=types.PDFType )
         zip = ResourceManager( type=types.ZipType )
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.EDUMATERIAL_ROOT
@@ -714,6 +729,11 @@ class Stationery( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 # =============================================================
 class Merchandise( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MERCHANDISE_ROOT
             rename_pk = ( 'products2_merchandise', 'id' )
@@ -803,6 +823,11 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
         pdf = ResourceManager( type=types.PDFType )
         pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
         epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MIRROR_ROOT
@@ -827,6 +852,11 @@ class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
         pdf = ResourceManager( type=types.PDFType )
         pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
         epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.GEMINI_FOCUS_ROOT
@@ -852,6 +882,11 @@ class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo
         pdf = ResourceManager( type=types.PDFType )
         pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
         epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.NOAO_NEWSLETTER_ROOT
@@ -961,6 +996,11 @@ class PostCard( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
 class Advertisement( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         pdf = ResourceManager(type=types.PDFType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.ADVERTISEMET_ROOT
             rename_pk = ( 'products2_advertisement', 'id' )
@@ -1116,6 +1156,11 @@ class Sticker( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
 # =============================================================
 class VideoConferenceBackground( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.VIDEO_CONFERENCE_BACKGROUND_ROOT
             rename_pk = ( 'products2_videoconferencebackground', 'id' )
