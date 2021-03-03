@@ -129,7 +129,7 @@ class ApplicationOptions (StandardOptions):
 
     downloads = (
         ( _(u'Images'), {'resources': ( 'original', 'large', 'screen' ), 'icons': { 'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot' } } ),
-        ( _(u'File Formats'), {'resources': ( 'dmg', 'exe', 'deb', 'rpm', 'snap' ), 'icons': { 'dmg': 'magnet', 'exe': 'magnet', 'deb': 'magnet', 'rpm': 'magnet', 'snap': 'magnet'  } } ),
+        ( _(u'File Formats'), {'resources': ( 'dmg', 'exe', 'deb', 'rpm', 'snap' ), 'icons': { 'dmg': 'install', 'exe': 'install', 'deb': 'install', 'rpm': 'install', 'snap': 'install', 'zip': 'zip'  } } ),
         )
 
     class Queries(object):
