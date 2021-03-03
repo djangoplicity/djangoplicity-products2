@@ -88,6 +88,11 @@ class Application ( ArchiveModel, StandardArchiveInfo ):
     marketplace_link = models.URLField(blank=True, help_text='Google Play store Link')
 
     class Archive( StandardArchiveInfo.Archive ):
+        dmg = ResourceManager( type=types.DmgType )
+        exe = ResourceManager( type=types.ExeType )
+        deb = ResourceManager( type=types.DebType )
+        rpm = ResourceManager( type=types.RpmType )
+        snap = ResourceManager( type=types.SnapType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.APPLICATION_ROOT
