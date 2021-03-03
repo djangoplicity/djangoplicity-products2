@@ -93,6 +93,7 @@ class Application ( ArchiveModel, StandardArchiveInfo ):
         deb = ResourceManager( type=types.DebType )
         rpm = ResourceManager( type=types.RpmType )
         snap = ResourceManager( type=types.SnapType )
+        zip = ResourceManager( type=types.ZipType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.APPLICATION_ROOT
