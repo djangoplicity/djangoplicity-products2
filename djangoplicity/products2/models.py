@@ -1100,6 +1100,32 @@ class Sticker( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
 
 
 # =============================================================
+# Video Conference Backgrounds
+# =============================================================
+class VideoConferenceBackground( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.VIDEO_CONFERENCE_BACKGROUND_ROOT
+            rename_pk = ( 'products2_videoconferencebackground', 'id' )
+
+    type = models.CharField( max_length=50, verbose_name='Background type', blank=True, null=True )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        pass
+
+    def get_absolute_url(self):
+        return reverse('videoconferencebackgrounds_detail', args=[str(self.id)])
+
+    def _get_subtype(self):
+        return 'VideoConferenceBackground'
+
+
+# =============================================================
 # Technical Documents
 # =============================================================
 class TechnicalDocument( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
