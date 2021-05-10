@@ -98,3 +98,4 @@ class archive_settings:
     NOAO_NEWSLETTER_ROOT = ARCHIVE_ROOT + 'noaonewsletter'
     EDUCATIONAL_PROGRAM_ROOT = ARCHIVE_ROOT + 'educationalprograms'
     CITIZEN_SCIENCE_PROGRAM_ROOT = ARCHIVE_ROOT + 'citizenscienceprograms'
+    VIDEO_CONFERENCE_BACKGROUND_ROOT = ARCHIVE_ROOT + 'videoconferencebackgrounds'
