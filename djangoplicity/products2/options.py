@@ -106,7 +106,7 @@ PrintedPosterOptions = product_options( "print_posters", "PrintedPoster", "Print
 ConferencePosterOptions = product_options( "conf_posters", "ConferencePoster", "ConferencePosters", False, extra_fields=(pixel_size, resolution) )
 ElectronicPosterOptions = product_options( "elec_posters", "ElectronicPoster", "ElectronicPosters", False, extra_fields=(pixel_size, resolution) )
 CapJournalOptions = product_options( "capjournals", "CAPjournal", "CAPjournals", True )
-MirrorOptions = product_options( "mirrors", "Mirror", "Mirrors", True )
+MirrorOptions = product_options( "mirrors", "The Mirror", "The Mirror", True )
 GeminiFocusOptions = product_options( "geminifocus", "Gemini Focus", "Gemini Focus", True )
 NOAONewsletterOptions = product_options( "noaonewsletters", "NOAO Newsletter", "NOAO Newsletters", True )
 RBSEJournalOptions = product_options("rbsejournals", "RBSE Journal", "RBSE Journals", True)

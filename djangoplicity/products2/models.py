@@ -840,7 +840,8 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
             rename_pk = ( 'products2_mirror', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
-        verbose_name = _( "Mirror" )
+        verbose_name = _( "The Mirror" )
+        verbose_name_plural = _( "The Mirror" )
         ordering = ['-priority', '-id']
 
     def get_absolute_url( self ):
