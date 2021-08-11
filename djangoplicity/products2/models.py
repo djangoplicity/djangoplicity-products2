@@ -910,6 +910,35 @@ class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo
 
 
 # =============================================================
+# RBSE Journal
+# =============================================================
+class RBSEJournal( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
+        epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.RBSE_JOURNAL_ROOT
+            rename_pk = ( 'products2_rbsejournal', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( "RBSE Journal" )
+        ordering = ['-priority', '-id']
+
+    def get_absolute_url( self ):
+        return reverse( 'rbsejournals_detail', args=[str( self.id )] )
+
+    def _get_subtype( self ):
+        return 'RBSEJournal'
+
+
+# =============================================================
 # Messenger
 # =============================================================
 class Messenger( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):

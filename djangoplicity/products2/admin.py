@@ -267,6 +267,7 @@ def register_with_admin( admin_site ):
     register_if_installed( admin_site, Mirror, MirrorOptions )
     register_if_installed( admin_site, MountedImage, MountedImageOptions, extra={ 'raw_id_fields': ['image'], 'fieldsets': [( 'Related image', {'fields': ( 'image', ), 'description': _("In case title, description or credit is not provided, the image's title, description or credit will be used.") } ), ] } )
     register_if_installed( admin_site, NOAONewsletter, NOAONewsletterOptions )
+    register_if_installed( admin_site, RBSEJournal, RBSEJournalOptions )
     register_if_installed( admin_site, PaperModel, PaperModelOptions )
     register_if_installed( admin_site, PlanetariumShow, PlanetariumShowOptions )
     register_if_installed( admin_site, PostCard, PostCardOptions )
