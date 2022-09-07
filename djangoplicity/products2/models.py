@@ -94,6 +94,12 @@ class Application ( ArchiveModel, StandardArchiveInfo ):
     marketplace_link = models.URLField(blank=True, help_text='Google Play store Link')
 
     class Archive( StandardArchiveInfo.Archive ):
+        dmg = ResourceManager( type=types.DmgType )
+        exe = ResourceManager( type=types.ExeType )
+        deb = ResourceManager( type=types.DebType )
+        rpm = ResourceManager( type=types.RpmType )
+        snap = ResourceManager( type=types.SnapType )
+        zip = ResourceManager( type=types.ZipType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.APPLICATION_ROOT
@@ -133,6 +139,11 @@ class MiniSite( ArchiveModel, StandardArchiveInfo ):
 class CitizenScienceProgram( ArchiveModel, StandardArchiveInfo ):
     validity = models.CharField( verbose_name=_( 'Validity' ), max_length=7, choices=VALIDITY, db_index=True )
     class Archive( StandardArchiveInfo.Archive ):
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.CITIZEN_SCIENCE_PROGRAM_ROOT
             rename_pk = ('products2_citizenscienceprogram', 'id')
@@ -150,6 +161,11 @@ class CitizenScienceProgram( ArchiveModel, StandardArchiveInfo ):
 class EducationalProgram( ArchiveModel, StandardArchiveInfo ):
     validity = models.CharField( verbose_name=_( 'Validity' ), max_length=7, choices=VALIDITY, db_index=True )
     class Archive( StandardArchiveInfo.Archive ):
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.EDUCATIONAL_PROGRAM_ROOT
             rename_pk = ('products2_educationalprogram', 'id')
@@ -535,6 +551,11 @@ class EducationalMaterial( ArchiveModel, StandardArchiveInfo, PrintInfo, Physica
         pdf = ResourceManager( type=types.PDFType )
         pdfsm = ResourceManager( type=types.PDFType )
         zip = ResourceManager( type=types.ZipType )
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.EDUMATERIAL_ROOT
@@ -722,6 +743,11 @@ class Stationery( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 # =============================================================
 class Merchandise( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MERCHANDISE_ROOT
             rename_pk = ( 'products2_merchandise', 'id' )
@@ -811,14 +837,20 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
         pdf = ResourceManager( type=types.PDFType )
         pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
         epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MIRROR_ROOT
             rename_pk = ( 'products2_mirror', 'id' )
 
     class Meta( StandardArchiveInfo.Meta ):
-        verbose_name = _( "Mirror" )
-        ordering = ['-priority', 'id']
+        verbose_name = _( "The Mirror" )
+        verbose_name_plural = _( "The Mirror" )
+        ordering = ['-priority', '-id']
 
     def get_absolute_url( self ):
         return reverse( 'mirrors_detail', args=[str( self.id )] )
@@ -835,6 +867,11 @@ class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
         pdf = ResourceManager( type=types.PDFType )
         pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
         epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.GEMINI_FOCUS_ROOT
@@ -843,7 +880,7 @@ class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Gemini Focus" )
         verbose_name_plural = _( "Gemini Focus" )
-        ordering = ['-priority', 'id']
+        ordering = ['-priority', '-id']
 
     def get_absolute_url( self ):
         return reverse( 'geminifocus_detail', args=[str( self.id )] )
@@ -860,6 +897,11 @@ class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo
         pdf = ResourceManager( type=types.PDFType )
         pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
         epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.NOAO_NEWSLETTER_ROOT
@@ -867,13 +909,42 @@ class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo
 
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "NOAO Newsletter" )
-        ordering = ['-priority', 'id']
+        ordering = ['-priority', '-id']
 
     def get_absolute_url( self ):
         return reverse( 'noaonewsletters_detail', args=[str( self.id )] )
 
     def _get_subtype( self ):
         return 'NOAONewsletter'
+
+
+# =============================================================
+# RBSE Journal
+# =============================================================
+class RBSEJournal( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
+        epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.RBSE_JOURNAL_ROOT
+            rename_pk = ( 'products2_rbsejournal', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( "RBSE Journal" )
+        ordering = ['-priority', '-id']
+
+    def get_absolute_url( self ):
+        return reverse( 'rbsejournals_detail', args=[str( self.id )] )
+
+    def _get_subtype( self ):
+        return 'RBSEJournal'
 
 
 # =============================================================
@@ -961,6 +1032,31 @@ class PostCard( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
 
     def _get_subtype( self ):
         return 'PostCard'
+
+
+# =============================================================
+# Advertisements
+# =============================================================
+class Advertisement( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager(type=types.PDFType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.ADVERTISEMET_ROOT
+            rename_pk = ( 'products2_advertisement', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( 'Advertisement' )
+
+    def get_absolute_url( self ):
+        return reverse( 'advertisements_detail', args=[str( self.id )] )
+
+    def _get_subtype( self ):
+        return 'Advertisement'
 
 
 # =============================================================
@@ -1097,6 +1193,30 @@ class Sticker( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
 
     def _get_subtype(self):
         return 'Sticker'
+
+
+# =============================================================
+# Video Conference Backgrounds
+# =============================================================
+class VideoConferenceBackground( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.VIDEO_CONFERENCE_BACKGROUND_ROOT
+            rename_pk = ( 'products2_videoconferencebackground', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        pass
+
+    def get_absolute_url(self):
+        return reverse('videoconferencebackgrounds_detail', args=[str(self.id)])
+
+    def _get_subtype(self):
+        return 'VideoConferenceBackground'
 
 
 # =============================================================

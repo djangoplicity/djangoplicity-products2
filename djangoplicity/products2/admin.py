@@ -243,6 +243,7 @@ def register_if_installed( admin_site, model, options, **kwargs ):
 
 
 def register_with_admin( admin_site ):
+    register_if_installed( admin_site, Application, ApplicationOptions )
     register_if_installed( admin_site, Model3d, Model3dOptions )
     register_if_installed( admin_site, AnnualReport, AnnualReportOptions )
     register_if_installed( admin_site, Book, BookOptions, extra={ 'search_fields': ['isbn'], 'fieldsets': [( 'Extra', {'fields': ( 'isbn', 'doi'), } ), ] } )
@@ -266,15 +267,18 @@ def register_with_admin( admin_site ):
     register_if_installed( admin_site, Mirror, MirrorOptions )
     register_if_installed( admin_site, MountedImage, MountedImageOptions, extra={ 'raw_id_fields': ['image'], 'fieldsets': [( 'Related image', {'fields': ( 'image', ), 'description': _("In case title, description or credit is not provided, the image's title, description or credit will be used.") } ), ] } )
     register_if_installed( admin_site, NOAONewsletter, NOAONewsletterOptions )
+    register_if_installed( admin_site, RBSEJournal, RBSEJournalOptions )
     register_if_installed( admin_site, PaperModel, PaperModelOptions )
     register_if_installed( admin_site, PlanetariumShow, PlanetariumShowOptions )
     register_if_installed( admin_site, PostCard, PostCardOptions )
+    register_if_installed( admin_site, Advertisement, AdvertisementOptions )
     register_if_installed( admin_site, Presentation, PresentationOptions )
     register_if_installed( admin_site, PressKit, PressKitOptions )
     register_if_installed( admin_site, PrintedPoster, PrintedPosterOptions )
     register_if_installed( admin_site, Sticker, StickerOptions )
     register_if_installed( admin_site, TechnicalDocument, TechnicalDocumentOptions )
     register_if_installed( admin_site, Visit, VisitOptions, exclude=['credit', 'list_link_thumbnail', 'embargo_date', 'created', 'last_modified', 'priority'], extra={ 'richtext_fields': ['description', ], 'raw_id_fields': ['image', ] } )
+    register_if_installed( admin_site, VideoConferenceBackground, VideoConferenceBackgroundOptions )
 
     admin_site.register( OnlineArtAuthor, OnlineArtAuthorAdmin )  # Special
     admin_site.register( Conference, ConferenceAdmin )  # Special

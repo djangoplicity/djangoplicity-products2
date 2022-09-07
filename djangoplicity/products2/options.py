@@ -97,16 +97,19 @@ ApparelOptions = product_options( "apparel", "Apparel", "Apparel", False )
 PaperModelOptions = product_options( "papermodels", "Paper Model", "Paper Models", False )
 PlanetariumShowOptions = product_options( "planetariumshows", "Planetarium Show", "Planetarium Shows", False, nopaper=True )
 PostCardOptions = product_options( "postcards", "Postcard", "Postcards", False )
+AdvertisementOptions = product_options( "advertisements", "Advertisement", "Advertisements", False )
 StickerOptions = product_options( "stickers", "Sticker", "Stickers", False )
+VideoConferenceBackgroundOptions = product_options( "videoconferencebackgrounds", "Video Conference Background", "Video Conference Backgrounds", False )
 TechnicalDocumentOptions = product_options( "techdocs", "Document", "Technical Documents", True )
 VirtualTourOptionsSC = product_options( "virtualtours", "Virtual Tour", "Virtual Tours", False )
 PrintedPosterOptions = product_options( "print_posters", "PrintedPoster", "PrintedPosters", False, extra_fields=(pixel_size, resolution) )
 ConferencePosterOptions = product_options( "conf_posters", "ConferencePoster", "ConferencePosters", False, extra_fields=(pixel_size, resolution) )
 ElectronicPosterOptions = product_options( "elec_posters", "ElectronicPoster", "ElectronicPosters", False, extra_fields=(pixel_size, resolution) )
 CapJournalOptions = product_options( "capjournals", "CAPjournal", "CAPjournals", True )
-MirrorOptions = product_options( "mirrors", "Mirror", "Mirrors", True )
+MirrorOptions = product_options( "mirrors", "The Mirror", "The Mirror", True )
 GeminiFocusOptions = product_options( "geminifocus", "Gemini Focus", "Gemini Focus", True )
 NOAONewsletterOptions = product_options( "noaonewsletters", "NOAO Newsletter", "NOAO Newsletters", True )
+RBSEJournalOptions = product_options("rbsejournals", "RBSE Journal", "RBSE Journals", True)
 STECFNewsletterOptions = product_options( "stecfnewsletters", "STECF Newsletter", "STECF Newsletters", True )
 MessengerOptions = product_options( "messengers", "Messenger", "Messengers", True )
 ScienceInSchoolOptions = product_options( "schools", "Science In School", "Science In School", True )
@@ -126,8 +129,8 @@ class ApplicationOptions (StandardOptions):
     description_template = 'archives/application/object_description.html'
 
     downloads = (
-        ( _(u'Images'), {'resources': ( 'original', 'large', 'screen'  ), 'icons': { 'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot'  } } ),
-
+        ( _(u'Images'), {'resources': ( 'original', 'large', 'screen' ), 'icons': { 'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot' } } ),
+        ( _(u'File Formats'), {'resources': ( 'dmg', 'exe', 'deb', 'rpm', 'snap' ), 'icons': { 'dmg': 'install', 'exe': 'install', 'deb': 'install', 'rpm': 'install', 'snap': 'install', 'zip': 'zip'  } } ),
         )
 
     class Queries(object):
