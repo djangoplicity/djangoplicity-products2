@@ -36,7 +36,7 @@ Base archive definitions across all product archives.
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
+from six import python_2_unicode_compatible
 from djangoplicity.archives import fields as archivesfields
 from djangoplicity.archives.contrib import types
 from djangoplicity.archives.resources import ImageResourceManager
@@ -152,7 +152,7 @@ class PrintInfo( models.Model ):
     """
     pages = models.PositiveSmallIntegerField( blank=True, help_text=_( u'Number of pages' ), null=True )
     cover = models.CharField( blank=True, choices=COVER_CHOICES, max_length=9, help_text=_( u'Type of cover' ) )
-    language = models.CharField( blank=True, choices=LANGUAGE_CHOICES, max_length=2 )
+    language = models.CharField( blank=True, choices=LANGUAGE_CHOICES, max_length=15 )
 
     class Meta:
         abstract = True

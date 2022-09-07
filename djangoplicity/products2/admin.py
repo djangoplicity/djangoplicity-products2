@@ -30,7 +30,7 @@
 # POSSIBILITY OF SUCH DAMAGE
 #
 
-from django.db.models.fields import FieldDoesNotExist
+from django.core.exceptions import FieldDoesNotExist
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from djangoplicity.archives.contrib.admin import ArchiveAdmin, RenameAdmin, \
