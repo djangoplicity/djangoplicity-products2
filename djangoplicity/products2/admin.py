@@ -279,6 +279,7 @@ def register_with_admin( admin_site ):
     register_if_installed( admin_site, TechnicalDocument, TechnicalDocumentOptions )
     register_if_installed( admin_site, Visit, VisitOptions, exclude=['credit', 'list_link_thumbnail', 'embargo_date', 'created', 'last_modified', 'priority'], extra={ 'richtext_fields': ['description', ], 'raw_id_fields': ['image', ] } )
     register_if_installed( admin_site, VideoConferenceBackground, VideoConferenceBackgroundOptions )
+    register_if_installed( admin_site, VirtualTour, VirtualTourOptions )
 
     admin_site.register( OnlineArtAuthor, OnlineArtAuthorAdmin )  # Special
     admin_site.register( Conference, ConferenceAdmin )  # Special
