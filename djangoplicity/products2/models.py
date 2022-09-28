@@ -213,6 +213,8 @@ class PlanetariumShow( ArchiveModel, StandardArchiveInfo ):
 class VirtualTour( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         tour = ResourceManager( type=types.VirtualTourType )
+        exe = ResourceManager(type=types.ExeType)
+        bz2 = ResourceManager(type=types.Bz2Type)
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.VIRTUAL_TOUR_ROOT
