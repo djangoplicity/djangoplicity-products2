@@ -123,6 +123,13 @@ SupernovaActivityOptions = product_options( "supernovaactivities", "Supernova Ac
 class VirtualTourOptions( VirtualTourOptionsSC ):
     description_template = 'archives/virtualtour/object_description.html'
 
+    downloads = (
+        (_(u'Images'), {'resources': ('original', 'large', 'screen'),
+                        'icons': {'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot'}}),
+        (_(u'File Formats'), {'resources': ('bz2', 'exe'),
+                              'icons': {'bz2': 'install', 'exe': 'install'}}),
+    )
+
 
 class ApplicationOptions (StandardOptions):
     urlname_prefix = 'applications'
