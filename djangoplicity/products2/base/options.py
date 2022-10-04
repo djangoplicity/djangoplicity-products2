@@ -94,6 +94,7 @@ class StandardOptions( ArchiveOptions ):
             ( 'svg', ( '.svg', ) ),
             ( 'dmg', ( '.dmg', ) ),
             ( 'exe', ( '.exe', ) ),
+            ('bz2', ('.bz2',)),
             ( 'deb', ( '.deb', ) ),
             ( 'rpm', ( '.rpm', ) ),
             ( 'snap', ( '.snap', ) ),
