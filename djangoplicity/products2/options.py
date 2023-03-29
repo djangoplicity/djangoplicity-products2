@@ -153,7 +153,7 @@ class HandoutOptions( StandardOptions ):
 
     downloads = (
         ( _(u'Images'), {'resources': ( 'original', 'large', 'screen'  ), 'icons': { 'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot'  } } ),
-        ( _(u'File Formats'), {'resources': ( 'pdf', ), 'icons': { 'pdf': 'doc', } } ),
+        ( _(u'File Formats'), {'resources': ( 'pdf', 'pdfsm'), 'icons': { 'pdf': 'doc', 'pdfsm': 'doc' } } ),
 
         )
 
