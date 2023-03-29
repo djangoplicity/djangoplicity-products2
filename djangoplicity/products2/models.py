@@ -680,6 +680,7 @@ class Brochure( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 class Handout ( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         pdf = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager(type=types.PDFType, verbose_name=_('PDF File (Small)'))
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.HANDOUT_ROOT
