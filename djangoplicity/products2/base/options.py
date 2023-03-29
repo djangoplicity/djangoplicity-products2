@@ -105,6 +105,8 @@ class StandardOptions( ArchiveOptions ):
             ( 'zip', ( '.zip', ) ),
             ( 'tour', ( '', ) ),
             ( 'wav', ( '.wav', ) ),
+            ('mp3', ('.mp3',)),
+            ('m4a', ('.m4a',)),
         ]
         actions = [
             move_resources,

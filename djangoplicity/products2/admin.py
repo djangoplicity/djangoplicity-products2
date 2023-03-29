@@ -278,6 +278,7 @@ def register_if_installed( admin_site, model, options, **kwargs ):
 def register_with_admin( admin_site ):
     register_if_installed( admin_site, Application, ApplicationOptions )
     register_if_installed( admin_site, Model3d, Model3dOptions )
+    register_if_installed(admin_site, Podcast, PodcastOptions)
     register_if_installed( admin_site, AnnualReport, AnnualReportOptions )
     register_if_installed( admin_site, Book, BookOptions, extra={ 'search_fields': ['isbn'], 'fieldsets': [( 'Extra', {'fields': ( 'isbn', 'doi'), } ), ] } )
     register_if_installed( admin_site, Brochure, BrochureOptions, exclude=['embargo_date', 'created', 'last_modified'] )

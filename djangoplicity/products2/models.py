@@ -1064,6 +1064,29 @@ class PostCard( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
 
 
 # =============================================================
+# Podcasts
+# =============================================================
+class Podcast(ArchiveModel, StandardArchiveInfo):
+    file_duration = metadatafields.AVMFileDuration()
+
+    class Archive(StandardArchiveInfo.Archive):
+        wav = AudioResourceManager(type=types.WaveAudioType)
+        mp3 = AudioResourceManager(type=types.Mp3AudioType)
+        m4a = AudioResourceManager(type=types.M4AAudioType)
+        aac = AudioResourceManager(derived='wav', type=types.AACAudioType)
+
+        class Meta(StandardArchiveInfo.Archive.Meta):
+            root = archive_settings.POSTCARD_ROOT
+            rename_pk = ('products2_podcast', 'id')
+
+    class Meta(StandardArchiveInfo.Meta):
+        verbose_name = _('Podcast')
+        verbose_name_plural = 'Podcasts'
+
+    def get_absolute_url(self):
+        return reverse('podcasts_detail', args=[str(self.pk)])
+
+# =============================================================
 # Advertisements
 # =============================================================
 class Advertisement( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
