@@ -32,15 +32,21 @@
 
 from django.db.models.fields import FieldDoesNotExist
 from django.contrib import admin
+from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from djangoplicity.archives.contrib.admin import ArchiveAdmin, RenameAdmin, \
     view_link, product_link
+from djangoplicity.archives.contrib.admin.defaults import TranslationDuplicateAdmin, SyncTranslationAdmin
 from djangoplicity.contrib.admin import DjangoplicityModelAdmin
 from djangoplicity.products2.base.models import StandardArchiveInfo, PhysicalInfo, \
     PrintInfo, ScreenInfo
 from djangoplicity.products2.models import *
 from djangoplicity.products2.options import *
 from djangoplicity.products2.base.models import ArchiveCategory
+
+
+def view_online_translation_virtual_tour(virtual_tour):
+    return format_html('<a href="{}?lang={}">View online</a>', virtual_tour.get_absolute_url(), virtual_tour.lang)
 
 
 class ExhibitionGroupAdmin( DjangoplicityModelAdmin ):
@@ -79,6 +85,33 @@ class ConferenceAdmin( DjangoplicityModelAdmin, ArchiveAdmin ):
                 )
     ordering = ('id', )
     richtext_fields = ('description',)
+
+
+class VirtualTourProxyAdmin(DjangoplicityModelAdmin, RenameAdmin, TranslationDuplicateAdmin, SyncTranslationAdmin, ArchiveAdmin):
+    list_display = ('title', 'release_date', 'published', view_online_translation_virtual_tour)
+    fieldsets = (
+        (
+            'Language',
+            {'fields': ('lang', 'source', 'translation_ready',)}
+        ),
+        (
+            'Publishing',
+            {'fields': ('published', 'release_date', ('created', 'last_modified'))}
+        ),
+        (
+            'Content',
+            {'fields': ('title', 'description', 'credit')}
+        )
+    )
+    raw_id_fields = ('source',)
+    readonly_fields = ['release_date', 'created', 'last_modified']
+
+    def get_readonly_fields(self, request, obj=None):
+        # When we are editing we disallow updating the slug to prevent duplication of the translation (The slug is the PK)
+        if obj:
+            return self.readonly_fields + ['slug']
+        else:
+            return super(VirtualTourProxyAdmin, self).get_readonly_fields(request, obj)
 
 
 def admin_factory( model, options, exclude=['release_date', 'embargo_date', 'created', 'last_modified'], name='Extra information', extra={} ):
@@ -280,6 +313,9 @@ def register_with_admin( admin_site ):
     register_if_installed( admin_site, Visit, VisitOptions, exclude=['credit', 'list_link_thumbnail', 'embargo_date', 'created', 'last_modified', 'priority'], extra={ 'richtext_fields': ['description', ], 'raw_id_fields': ['image', ] } )
     register_if_installed( admin_site, VideoConferenceBackground, VideoConferenceBackgroundOptions )
     register_if_installed( admin_site, VirtualTour, VirtualTourOptions )
+
+    if settings.USE_I18N:
+        admin_site.register(VirtualTourProxy, VirtualTourProxyAdmin)
 
     admin_site.register( OnlineArtAuthor, OnlineArtAuthorAdmin )  # Special
     admin_site.register( Conference, ConferenceAdmin )  # Special
