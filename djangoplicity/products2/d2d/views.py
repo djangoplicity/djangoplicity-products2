@@ -35,9 +35,9 @@ from rest_framework.response import Response
 
 from djangoplicity.products2.d2d.renderers import ProductJSONRenderer
 from djangoplicity.products2.d2d.serializers import Model3dSerializer, \
-    MusicSerializer
-from djangoplicity.products2.models import Model3d, Music
-from djangoplicity.products2.options import Model3dOptions, MusicOptions
+    MusicSerializer, PodcastSerializer
+from djangoplicity.products2.models import Model3d, Music, Podcast
+from djangoplicity.products2.options import Model3dOptions, MusicOptions, PodcastOptions
 from djangoplicity.utils.d2d import D2dDict
 
 
@@ -66,6 +66,10 @@ class MusicPagination(BasePagination):
     feed_type = 'Music'
 
 
+class PodcastPagination(BasePagination):
+    feed_type = 'Podcast'
+
+
 class D2dModel3dList(ListAPIView):
     serializer_class = Model3dSerializer
     pagination_class = Model3dPagination
@@ -84,5 +88,16 @@ class D2dMusicList(ListAPIView):
 
     def get_queryset(self):
         qs = MusicOptions.Queries.default.queryset(Music, MusicOptions, None)
+
+        return qs[0].order_by('-last_modified')
+
+
+class D2dPodcastList(ListAPIView):
+    serializer_class = PodcastSerializer
+    pagination_class = PodcastPagination
+    renderer_classes = (ProductJSONRenderer, )
+
+    def get_queryset(self):
+        qs = PodcastOptions.Queries.default.queryset(Podcast, PodcastOptions, None)
 
         return qs[0].order_by('-last_modified')

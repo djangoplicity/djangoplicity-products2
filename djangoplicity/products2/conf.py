@@ -93,6 +93,7 @@ class archive_settings:
     DONATION_ROOT = ARCHIVE_ROOT + 'donations'
     SUPERNOVA_ACTIVITY_ROOT = ARCHIVE_ROOT + 'supernovaactivities'
     MUSIC_ROOT = ARCHIVE_ROOT + 'music'
+    PODCAST_ROOT = ARCHIVE_ROOT + 'podcasts'
     MIRROR_ROOT = ARCHIVE_ROOT + 'mirrors'
     GEMINI_FOCUS_ROOT = ARCHIVE_ROOT + 'geminifocus'
     NOAO_NEWSLETTER_ROOT = ARCHIVE_ROOT + 'noaonewsletter'
