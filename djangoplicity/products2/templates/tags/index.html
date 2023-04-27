@@ -1,0 +1,78 @@
+{% load i18n %}
+<div class="col-md-12">
+    <h1>{% trans index.title %}</h1>
+    <h3>{% trans index.subtitle %}</h3>
+    <p>{% trans index.description %}</p>
+    <div class="d-flex justify-content-end media-sortby" style="float: none; min-height: 30px; font-weight: 500">
+        <ul title="Sort by:">
+            <li>
+                <a href="{{ request.path }}"
+                    {% if not request.GET.sort %} class="selected"{% endif %}>{% trans "default" %}
+                </a>
+            </li>
+            <li>
+                <a href="{{ request.path }}?sort=priority"
+                    {% if request.GET.sort == 'priority' %} class="selected"{% endif %}>{% trans "priority" %}
+                </a>
+            </li>
+            <li>
+                <a href="{{ request.path }}?sort=release_date"
+                    {% if request.GET.sort == 'release_date' %} class="selected"{% endif %}>{% trans "Date" %}
+                </a>
+            </li>
+            </li>
+        </ul>
+    </div>
+
+    <div class="grid" style="position: relative; height: 3048.56px;">
+        {% for item in items %}
+        <div class="grid-item m-2">
+            <div class="">
+                <a href="{{ item.index_url }}" class="thumbnail" style="padding: 0">
+                    <img src="{{ item.image_url }}"
+                         class="img-responsive" alt="Brochures">
+                    <div class="caption d-flex justify-content-space-between align-items-center">
+                        <p>{% trans item.get_title %}</p>
+                        {% if item.model %}
+                            <span class="badge-info">{{ item.count }}</span>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+    </div>
+    <script>
+        const grid = document.querySelector('.grid');
+        // Wait for all images to load before initializing Masonry
+        imagesLoaded(grid, function () {
+            const msnry = new Masonry('.grid', {
+                itemSelector: '.grid-item',
+                columnWidth: '.grid-item',
+                percentPosition: true,
+                horizontalOrder: true
+            });
+        });
+    </script>
+
+
+</div>
+
+
+<style>
+    /* 3 columns by default */
+    .grid-item {
+        width: 33.333% !important;
+        padding: 5px;
+        position: center;
+    }
+
+    @media screen and (min-width: 768px) {
+        /* 5 columns for larger screens */
+        .grid-item {
+            width: 100%;
+        }
+    }
+</style>

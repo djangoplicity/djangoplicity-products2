@@ -45,14 +45,14 @@ The enable items in an product archive to be sold, the archive must:
 
 """
 
-from datetime import date
-
+from datetime import date, datetime
+from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.utils.translation import ugettext_lazy as _
-
+from django.contrib.contenttypes.models import ContentType
 from djangoplicity.archives import fields as archivesfields
 from djangoplicity.archives.base import ArchiveModel
 from djangoplicity.archives.contrib import types
@@ -82,6 +82,81 @@ def get_product_types():
 #############################
 # NON-SHOP PRODUCT ARCHIVES #
 #############################
+
+class Index(models.Model):
+    title = models.CharField(max_length=256, null=False)
+    subtitle = models.CharField(max_length=256, null=False)
+    description = models.TextField(null=False)
+    site = models.ForeignKey(Site, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        self.site = get_current_site(None)
+        super(Index, self).save(*args, **kwargs)
+
+    class Meta:
+        unique_together = ('site',)
+
+    def __str__(self):
+        return self.title
+
+
+class IndexItem(models.Model):
+    title = models.CharField(max_length=256, null=False)
+    image_url = models.CharField(max_length=200, null=False)
+    index_url = models.CharField(max_length=200, null=False, unique=True)
+    order = models.PositiveSmallIntegerField(null=False)
+    disabled = models.BooleanField(null=False)
+    content_type = models.ForeignKey(
+        ContentType,
+        verbose_name=_('content type'),
+        related_name="content_type_set_for_%(class)s",
+        on_delete=models.CASCADE,
+        db_index=True,
+        null=True,
+        blank=True
+    )
+    index = models.ForeignKey(
+        Index,
+        on_delete=models.CASCADE,
+        related_name='items')
+
+    def __str__(self):
+        return self.get_title
+
+    @property
+    def model(self):
+        if self.content_type:
+            return self.content_type.model_class()
+        return None
+
+    @property
+    def count(self):
+        return self.model.objects.count() if self.model else ''
+
+    @property
+    def last_release(self):
+        try:
+            if self.model:
+                obj = self.model.objects.latest('release_date')
+                return obj.release_date
+            return datetime.min
+        except models.ObjectDoesNotExist:
+            return datetime.min
+
+    @property
+    def priority(self):
+        value = 0
+        if self.model:
+            value = self.model.objects.aggregate(models.Max('priority'))['priority__max']
+        return value if value else 0
+
+    def get_title(self):
+        if self.title:
+            return self.title
+        elif self.content_type:
+            return self.model._meta.verbose_name_plural # noqa
+        return ''
+
 
 class Application ( ArchiveModel, StandardArchiveInfo ):
 
