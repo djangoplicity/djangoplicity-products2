@@ -94,6 +94,7 @@ class StandardOptions( ArchiveOptions ):
             ( 'svg', ( '.svg', ) ),
             ( 'dmg', ( '.dmg', ) ),
             ( 'exe', ( '.exe', ) ),
+            ('bz2', ('.bz2',)),
             ( 'deb', ( '.deb', ) ),
             ( 'rpm', ( '.rpm', ) ),
             ( 'snap', ( '.snap', ) ),
@@ -104,6 +105,8 @@ class StandardOptions( ArchiveOptions ):
             ( 'zip', ( '.zip', ) ),
             ( 'tour', ( '', ) ),
             ( 'wav', ( '.wav', ) ),
+            ('mp3', ('.mp3',)),
+            ('m4a', ('.m4a',)),
         ]
         actions = [
             move_resources,
