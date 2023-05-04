@@ -30,7 +30,7 @@
 # POSSIBILITY OF SUCH DAMAGE
 #
 
-from django.db.models.fields import FieldDoesNotExist
+from django.core.exceptions import FieldDoesNotExist
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
@@ -147,7 +147,7 @@ def admin_factory( model, options, exclude=['release_date', 'embargo_date', 'cre
         return tmp
 
     def exclude_fields( fs ):
-        return filter( lambda x: x not in exclude, fs )
+        return [x for x in fs if x not in exclude]
 
     product_list_display = check_fields( [ 'id', 'list_link_thumbnail', ] )
     product_list_filter = exclude_fields( exclude_fields( ['published', 'priority'] ) )

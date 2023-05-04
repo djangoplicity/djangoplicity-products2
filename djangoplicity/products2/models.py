@@ -48,11 +48,11 @@ The enable items in an product archive to be sold, the archive must:
 from datetime import date, datetime
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.sites.models import Site
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
+from six import python_2_unicode_compatible
 from djangoplicity.archives import fields as archivesfields
 from djangoplicity.archives.base import ArchiveModel
 from djangoplicity.archives.contrib import types
@@ -64,6 +64,13 @@ from djangoplicity.products2.base import *
 from djangoplicity.products2.conf import archive_settings
 from djangoplicity.translation.models import TranslationForeignKey, translation_reverse, TranslationModel
 from djangoplicity.products2.base.consts import DEFAULT_CREDIT, VALIDITY
+
+
+import django
+if django.VERSION >= (2, 0):
+    from django.urls import reverse
+else:
+    from django.core.urlresolvers import reverse
 
 # SATCHMO RELATED
 # ===============
@@ -457,12 +464,12 @@ class OnlineArtAuthor ( ArchiveModel, StandardArchiveInfo ):
     def get_absolute_url( self ):
         return reverse( 'artists_detail', args=[str( self.id )] )
 
-    def __unicode__( self ):
+    def __str__( self ):
         return self.name
 
 
 class OnlineArt ( ArchiveModel, StandardArchiveInfo, ):
-    artist = models.ForeignKey( OnlineArtAuthor )
+    artist = models.ForeignKey( OnlineArtAuthor, on_delete=models.CASCADE )
     credit = None  # Overwrite inherited website.
 
     class Archive( StandardArchiveInfo.Archive ):
@@ -505,6 +512,7 @@ class ElectronicCard( ArchiveModel, StandardArchiveInfo, ScreenInfo ):
 # =============================================================
 # Exhibition
 # =============================================================
+@python_2_unicode_compatible
 class ExhibitionGroup( models.Model ):
     name = models.CharField( max_length=255 )
     priority = archivesfields.PriorityField( default=0 )
@@ -517,7 +525,7 @@ class ExhibitionGroup( models.Model ):
 
 
 class Exhibition( ArchiveModel, StandardArchiveInfo ):
-    group = models.ForeignKey( ExhibitionGroup, blank=True, null=True )
+    group = models.ForeignKey( ExhibitionGroup, blank=True, null=True, on_delete=models.CASCADE)
     group_order = models.PositiveIntegerField( blank=True, null=True )
 
     class Archive( StandardArchiveInfo.Archive ):
@@ -1191,7 +1199,7 @@ class Advertisement( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo 
 # Mounted Images
 # =============================================================
 class MountedImage( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
-    image = TranslationForeignKey( Image )
+    image = TranslationForeignKey( Image, on_delete=models.CASCADE )
 
     def __init__( self, *args, **kwargs ):
         # We override __init__ to prevent StandardArchiveInfo from
@@ -1387,7 +1395,7 @@ MONTHS_CHOICES = (
     ( 12, _( 'December' ) ),
 )
 
-
+@python_2_unicode_compatible
 class Calendar( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     year = models.CharField( max_length=4, blank=False, null=False, )
     month = archivesfields.ChoiceField( choices=MONTHS_CHOICES, blank=True, default=0 )
@@ -1415,20 +1423,21 @@ class Calendar( ArchiveModel, StandardArchiveInfo, PhysicalInfo ):
     def _get_subtype( self ):
         return 'Calendar'
 
-    def __unicode__( self ):
+    def __str__( self ):
         if self.month != 0:
             return 'Calendar %s %s' % ( date( year=1901, month=self.month, day=1 ).strftime( '%b' ), self.year )
         else:
             return 'Calendar %s' % self.year
 
 
+@python_2_unicode_compatible
 class Donation( ArchiveModel, StandardArchiveInfo ):
     """
     Donations
     """
     weight = 0
 
-    def __unicode__( self ):
+    def __str__( self ):
         return "%s - %s " % ( self.id, self.title )
 
     class Archive( StandardArchiveInfo.Archive ):
@@ -1447,13 +1456,14 @@ class Donation( ArchiveModel, StandardArchiveInfo ):
         return 'Donation'
 
 
+@python_2_unicode_compatible
 class SupernovaActivity( ArchiveModel, StandardArchiveInfo ):
     """
     SupernovaActivities
     """
     weight = 0
 
-    def __unicode__( self ):
+    def __str__( self ):
         return "%s - %s " % ( self.id, self.title )
 
     class Meta:
@@ -1554,6 +1564,7 @@ class ConferenceItem( ArchiveModel, StandardArchiveInfo ):
         return 'ConferenceItem'
 
 
+@python_2_unicode_compatible
 class Conference( models.Model ):
     """
     A conference groups together related items (registration fee, dinner tickets etc), and
@@ -1578,7 +1589,7 @@ class Conference( models.Model ):
         verbose_name = _( "conference type" )
         verbose_name_plural = _( "conference type" )
 
-    def __unicode__( self ):
+    def __str__( self ):
         return "%s - %s " % ( self.id, self.title )
 
     @classmethod
@@ -1619,6 +1630,7 @@ class Model3d( ArchiveModel, StandardArchiveInfo ):
 # =============================================================
 # Media visits
 # =============================================================
+@python_2_unicode_compatible
 class Visit( ArchiveModel, models.Model ):
     """
     Archive of media visits
@@ -1626,7 +1638,7 @@ class Visit( ArchiveModel, models.Model ):
     id = archivesfields.IdField()
     title = archivesfields.TitleField()
     description = archivesfields.DescriptionField( blank=True )
-    image = models.ForeignKey( Image, null=True, blank=True )
+    image = models.ForeignKey( Image, null=True, blank=True, on_delete=models.CASCADE )
 
     def get_absolute_url( self ):
         return "%s?search=%s" % ( reverse( 'visits_defaultquery' ), self.id )
@@ -1644,5 +1656,5 @@ class Visit( ArchiveModel, models.Model ):
     class Meta:
         ordering = ['-release_date']
 
-    def __unicode__( self ):
+    def __str__( self ):
         return "%s: %s" % ( self.id, self.title)
