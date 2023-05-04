@@ -57,10 +57,11 @@ from djangoplicity.archives.base import ArchiveModel
 from djangoplicity.archives.contrib import types
 from djangoplicity.archives.resources import AudioResourceManager, \
     ImageFileType, ResourceManager, ImageResourceManager
+from djangoplicity.archives.translation import TranslationProxyMixin
 from djangoplicity.media.models import Image
 from djangoplicity.products2.base import *
 from djangoplicity.products2.conf import archive_settings
-from djangoplicity.translation.models import TranslationForeignKey
+from djangoplicity.translation.models import TranslationForeignKey, translation_reverse, TranslationModel
 from djangoplicity.products2.base.consts import DEFAULT_CREDIT, VALIDITY
 
 
@@ -216,7 +217,12 @@ class PlanetariumShow( ArchiveModel, StandardArchiveInfo ):
 # =============================================================
 # Virtual tours
 # =============================================================
-class VirtualTour( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
+class VirtualTour(ArchiveModel, TranslationModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
+
+    class Translation:
+        fields = ['title', 'description', 'credit']
+        excludes = ['published', 'last_modified', 'created']
+
     class Archive( StandardArchiveInfo.Archive ):
         tour = ResourceManager( type=types.VirtualTourType )
         exe = ResourceManager(type=types.ExeType)
@@ -231,6 +237,35 @@ class VirtualTour( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
 
     def get_absolute_url(self):
         return reverse( 'virtualtours_detail', args=[str( self.id )] )
+
+
+# ========================================================================
+# Translation proxy model,
+# ========================================================================
+class VirtualTourProxy(VirtualTour, TranslationProxyMixin):
+    """
+    Post proxy model for creating admin only to edit
+    translated objects.
+    """
+    objects = VirtualTour.translation_objects
+
+    def clean(self):
+        # Note: For some reason it's not possible to
+        # to define clean/validate_unique in TranslationProxyMixin
+        # so we have to do this trick, where we add the methods and
+        # call into translation proxy micin.
+        self.id_clean()
+
+    def validate_unique(self, exclude=None):
+        self.id_validate_unique(exclude=exclude)
+
+    class Meta:
+        proxy = True
+        verbose_name = _('Virtual Tour translation')
+
+    def get_absolute_url(self):
+        virtual_tour = self.get_source()
+        return translation_reverse('virtualtours_detail', args=[virtual_tour.id], lang=self.lang)
 
 
 # =============================================================
@@ -653,6 +688,7 @@ class Brochure( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 class Handout ( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         pdf = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager(type=types.PDFType, verbose_name=_('PDF File (Small)'))
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.HANDOUT_ROOT
@@ -1035,6 +1071,29 @@ class PostCard( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
     def _get_subtype( self ):
         return 'PostCard'
 
+
+# =============================================================
+# Podcasts
+# =============================================================
+class Podcast(ArchiveModel, StandardArchiveInfo):
+    file_duration = metadatafields.AVMFileDuration()
+
+    class Archive(StandardArchiveInfo.Archive):
+        wav = AudioResourceManager(type=types.WaveAudioType)
+        mp3 = AudioResourceManager(type=types.Mp3AudioType)
+        m4a = AudioResourceManager(type=types.M4AAudioType)
+        aac = AudioResourceManager(derived='wav', type=types.AACAudioType)
+
+        class Meta(StandardArchiveInfo.Archive.Meta):
+            root = archive_settings.POSTCARD_ROOT
+            rename_pk = ('products2_podcast', 'id')
+
+    class Meta(StandardArchiveInfo.Meta):
+        verbose_name = _('Podcast')
+        verbose_name_plural = 'Podcasts'
+
+    def get_absolute_url(self):
+        return reverse('podcasts_detail', args=[str(self.pk)])
 
 # =============================================================
 # Advertisements

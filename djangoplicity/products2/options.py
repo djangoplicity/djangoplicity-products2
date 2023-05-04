@@ -153,7 +153,7 @@ class HandoutOptions( StandardOptions ):
 
     downloads = (
         ( _(u'Images'), {'resources': ( 'original', 'large', 'screen'  ), 'icons': { 'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot'  } } ),
-        ( _(u'File Formats'), {'resources': ( 'pdf', ), 'icons': { 'pdf': 'doc', } } ),
+        ( _(u'File Formats'), {'resources': ( 'pdf', 'pdfsm'), 'icons': { 'pdf': 'doc', 'pdfsm': 'doc' } } ),
 
         )
 
@@ -229,6 +229,40 @@ class MusicOptions (StandardOptions):
             process_audio_extras(),
         ]
 
+
+class PodcastOptions (StandardOptions):
+    urlname_prefix = 'podcasts'
+    description_template = 'archives/podcast/object_description.html'
+
+    info = (
+        (_(u'About the Podcast'), {'fields': ('id', release_date, duration)}),
+    )
+
+    downloads = (
+        (
+            _(u'Audio'), {
+                'resources': ('wav', 'mp3', 'm4a'),
+                'icons': {
+                    'wav': 'audio',
+                    'mp3': 'audio',
+                    'm4a': 'audio',
+                }
+            }
+        ),
+    )
+
+    class Queries(object):
+        default = AllPublicQuery(browsers=('normal', 'viewall'), verbose_name='Podcast')
+
+    class Import(StandardOptions.Import):
+        scan_directories = [
+            ('wav', ('.wav', )),
+            ('m4a', ('.m4a',)),
+            ('mp3', ('.mp3', )),
+        ]
+        actions = [
+            move_resources,
+        ]
 
 class EducationalMaterialOptions (StandardOptions):
     urlname_prefix = 'education'

@@ -32,7 +32,7 @@
 from rest_framework import serializers
 
 from djangoplicity.archives.utils import get_instance_resources
-from djangoplicity.products2.models import Model3d, Music
+from djangoplicity.products2.models import Model3d, Music, Podcast
 from djangoplicity.utils.datetimes import timezone
 from djangoplicity.utils.d2d import D2dDict
 from djangoplicity.utils.templatetags.djangoplicity_text_utils import \
@@ -74,6 +74,23 @@ class Model3dSerializer(ProductSerializer):
 class MusicSerializer(ProductSerializer):
     class Meta:
         model = Music
+        fields = (
+            'id', 'title', 'description', 'credit', 'priority',
+            'release_date', 'assets'
+        )
+
+    def get_assets(self, obj):
+        asset = D2dDict([
+            ('MediaType', 'Audio'),
+            ('Resources', get_instance_resources(obj)),
+        ])
+
+        return [asset]
+
+
+class PodcastSerializer(ProductSerializer):
+    class Meta:
+        model = Podcast
         fields = (
             'id', 'title', 'description', 'credit', 'priority',
             'release_date', 'assets'
