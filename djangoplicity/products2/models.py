@@ -1539,7 +1539,7 @@ class ConferenceItem( ArchiveModel, StandardArchiveInfo ):
     """
     # Since we shouldn't add any shipping costs to conference items, we set the weight to 0. (attr required by ShopModel)
     weight = 0
-    conference = models.ForeignKey( 'products2.Conference' )
+    conference = models.ForeignKey('products2.Conference', on_delete=models.CASCADE)
 
     def save( self, **kwargs ):
         if self.conference and self.conference.job:
