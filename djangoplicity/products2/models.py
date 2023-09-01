@@ -101,6 +101,13 @@ class Application ( ArchiveModel, StandardArchiveInfo ):
         rpm = ResourceManager( type=types.RpmType )
         snap = ResourceManager( type=types.SnapType )
         zip = ResourceManager( type=types.ZipType )
+        tar = ResourceManager( type=types.TarType )
+        tar_gz = ResourceManager( type=types.TarGzType )
+        tar_bz2 = ResourceManager( type=types.TarBz2Type )
+        tz = ResourceManager( type=types.TzType )
+        sty = ResourceManager( type=types.StyType )
+        tex = ResourceManager( type=types.TexType )
+        docx = ResourceManager( type=types.DocxType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.APPLICATION_ROOT
