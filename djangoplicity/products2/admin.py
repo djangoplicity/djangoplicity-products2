@@ -49,6 +49,24 @@ def view_online_translation_virtual_tour(virtual_tour):
     return format_html('<a href="{}?lang={}">View online</a>', virtual_tour.get_absolute_url(), virtual_tour.lang)
 
 
+class IndexItemInline(admin.TabularInline):
+    model = IndexItem
+    extra = 1
+    fields = ('title', 'content_type', 'index_url', 'image_url', 'order', 'disabled')
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "content_type":
+            app_models = ContentType.objects.filter(app_label='products2').order_by('model')
+            kwargs["queryset"] = app_models
+        return super(IndexItemInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+
+class IndexAdmin(admin.ModelAdmin):
+    inlines = [IndexItemInline]
+    change_list_template = 'admin/change_list.html'
+    fields = ('title', 'subtitle', 'description')
+
+
 class ExhibitionGroupAdmin( DjangoplicityModelAdmin ):
     list_display = ( 'id', 'name', 'priority', )
     list_editable = ( 'name', 'priority' )
@@ -321,6 +339,7 @@ def register_with_admin( admin_site ):
     admin_site.register( OnlineArtAuthor, OnlineArtAuthorAdmin )  # Special
     admin_site.register( Conference, ConferenceAdmin )  # Special
     admin_site.register( ExhibitionGroup, ExhibitionGroupAdmin )  # Special
+    admin_site.register(Index, IndexAdmin)
 
     class ArchiveCategoryAdmin(DjangoplicityModelAdmin):
        list_display = ('fullname',)
