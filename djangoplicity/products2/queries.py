@@ -87,6 +87,16 @@ class NOAONewsletterQuery (AllPublicQuery):
         qs = self._filter_datetime( qs, now, 'release_date', False, True )
         qs = self._filter_datetime( qs, now, 'embargo_date', False, True )
         return ( qs, query_data )
+    
+
+class TONNewsletterQuery (AllPublicQuery):
+    def queryset( self, model, options, request, **kwargs ):
+        now = datetime.now()
+        ( qs, query_data ) = super( TONNewsletterQuery, self ).queryset( model, options, request, **kwargs )
+        qs = qs.filter(type='tonnewsletter')
+        qs = self._filter_datetime( qs, now, 'release_date', False, True )
+        qs = self._filter_datetime( qs, now, 'embargo_date', False, True )
+        return ( qs, query_data )
 
 
 class STECFNewsletterQuery (AllPublicQuery):

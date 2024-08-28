@@ -19,7 +19,7 @@ from djangoplicity.products2.models import Calendar, Logo, Exhibition, Sticker, 
     PrintedPoster, ConferencePoster, ElectronicPoster, Merchandise, Presentation, Model3d, \
     AnnualReport, Book, Brochure, Flyer, Handout, Map, PressKit, EducationalMaterial, MiniSite, \
     MountedImage, PaperModel, PlanetariumShow, Visit, OnlineArtAuthor, Mirror, TechnicalDocument, \
-    GeminiFocus, NOAONewsletter, EducationalProgram, CitizenScienceProgram
+    GeminiFocus, NOAONewsletter, TONNewsletter, EducationalProgram, CitizenScienceProgram
 
 from djangoplicity.products2.options import CalendarOptions, LogoOptions, ExhibitionOptions, \
     StickerOptions, PostCardOptions, PrintedPosterOptions, ConferencePosterOptions, \
@@ -27,7 +27,7 @@ from djangoplicity.products2.options import CalendarOptions, LogoOptions, Exhibi
     AnnualReportOptions, BookOptions, BrochureOptions, FlyerOptions, HandoutOptions, \
     MapOptions, PressKitOptions, EducationalMaterialOptions, MiniSiteOptions, MountedImageOptions, \
     PaperModelOptions, PlanetariumShowOptions, VisitOptions, OnlineArtAuthorOptions, MirrorOptions, \
-    TechnicalDocumentOptions, GeminiFocusOptions, NOAONewsletterOptions, EducationalProgramOptions, \
+    TechnicalDocumentOptions, GeminiFocusOptions, NOAONewsletterOptions, TONNewsletterOptions, EducationalProgramOptions, \
     CitizenScienceProgramOptions
 
 
@@ -58,6 +58,7 @@ urlpatterns = [
     url( r'^products/mirrors/', include('djangoplicity.products2.urls.mirrors'), { 'model': Mirror, 'options': MirrorOptions, 'translate': True  } ),
     url( r'^products/gemini-focus/', include('djangoplicity.products2.urls.geminifocus'), { 'model': GeminiFocus, 'options': GeminiFocusOptions, 'translate': True  } ),
     url( r'^products/noao-newsletters/', include('djangoplicity.products2.urls.noaonewsletters'), { 'model': NOAONewsletter, 'options': NOAONewsletterOptions, 'translate': True  } ),
+    url( r'^products/noao-newsletters/', include('djangoplicity.products2.urls.tonnewsletters'), { 'model': TONNewsletter, 'options': TONNewsletterOptions, 'translate': True  } ),
     url( r'^products/mounted-images/', include('djangoplicity.products2.urls.mountedimages'), { 'model': MountedImage, 'options': MountedImageOptions, 'translate': True  } ),
     url( r'^products/paper-models/', include('djangoplicity.products2.urls.papermodels'), { 'model': PaperModel, 'options': PaperModelOptions, 'translate': True  } ),
     url( r'^products/plant-shows/', include('djangoplicity.products2.urls.planetariumshows'), { 'model': PlanetariumShow, 'options': PlanetariumShowOptions, 'translate': True  } ),

@@ -961,6 +961,35 @@ class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo
 
     def _get_subtype( self ):
         return 'NOAONewsletter'
+    
+
+# =============================================================
+# TON Newsletter
+# =============================================================
+class TONNewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
+        epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.TON_NEWSLETTER_ROOT
+            rename_pk = ( 'products2_tonnewsletter', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( "TON Newsletters" )
+        ordering = ['-priority', '-id']
+
+    def get_absolute_url( self ):
+        return reverse( 'tonnewsletters_detail', args=[str( self.id )] )
+
+    def _get_subtype( self ):
+        return 'TONNewsletter'
 
 
 # =============================================================
