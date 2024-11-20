@@ -102,4 +102,5 @@ class archive_settings:
     CITIZEN_SCIENCE_PROGRAM_ROOT = ARCHIVE_ROOT + 'citizenscienceprograms'
     ADVERTISEMET_ROOT = ARCHIVE_ROOT + 'abc'
     VIDEO_CONFERENCE_BACKGROUND_ROOT = ARCHIVE_ROOT + 'videoconferencebackgrounds'
+    LINE_ART_ROOT = ARCHIVE_ROOT + 'lineart'
     RBSE_JOURNAL_ROOT = ARCHIVE_ROOT + 'rbsejournals'

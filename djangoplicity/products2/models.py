@@ -1583,6 +1583,25 @@ class Model3d( ArchiveModel, StandardArchiveInfo ):
     def get_absolute_url( self ):
         return reverse( 'models3d_detail', args=[str( self.id )] )
 
+
+
+# =============================================================
+# LineArt models
+# =============================================================
+class LineArt( ArchiveModel, StandardArchiveInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        svg = ResourceManager( type=types.SvgType )
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.LINE_ART_ROOT
+            rename_pk = ( 'products2_lineart', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( "Line Art" )
+        verbose_name_plural = _( "Line Art" )
+
+    def get_absolute_url( self ):
+        return reverse( 'lineart_detail', args=[str( self.id )] )
+
 ########################
 # NON-PRODUCT ARCHIVES #
 ########################

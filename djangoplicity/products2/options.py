@@ -518,6 +518,21 @@ class Model3dOptions ( StandardOptions ):
         ]
 
 
+class LineArtOptions(StandardOptions):
+    urlname_prefix = 'lineart'
+
+    info = (
+        (_(u'About the Line Art'), {'fields': ('id', release_date,)}),
+    )
+
+    downloads = (
+        (_(u'Images'), {'resources': ('original', 'large', 'screen', 'svg'), 'icons': {'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot', 'svg': 'phot'}}),
+    )
+
+    class Queries(object):
+        default = AllPublicQuery(browsers=('normal', 'viewall'), verbose_name='Line Art')
+
+
 ###############################
 # NON-PRODUCT ARCHIVE OPTIONS #
 ###############################
