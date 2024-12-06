@@ -520,13 +520,14 @@ class Model3dOptions ( StandardOptions ):
 
 class LineArtOptions(StandardOptions):
     urlname_prefix = 'lineart'
+    description_template = 'archives/lineart/object_description.html'
 
     info = (
         (_(u'About the Line Art'), {'fields': ('id', release_date,)}),
     )
 
     downloads = (
-        (_(u'Images'), {'resources': ('original', 'large', 'screen', 'svg'), 'icons': {'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot', 'svg': 'phot'}}),
+        (_(u'Images'), {'resources': ('original', 'svg'), 'icons': {'original': 'phot', 'svg': 'phot'}}),
     )
 
     class Queries(object):
