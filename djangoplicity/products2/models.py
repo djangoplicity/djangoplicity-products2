@@ -1598,6 +1598,7 @@ class LineArt( ArchiveModel, StandardArchiveInfo ):
     class Meta( StandardArchiveInfo.Meta ):
         verbose_name = _( "Line Art" )
         verbose_name_plural = _( "Line Art" )
+        ordering = ['title']
 
     def get_absolute_url( self ):
         return reverse( 'lineart_detail', args=[str( self.id )] )
