@@ -593,7 +593,7 @@ class AnnualReport( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo )
 class EducationalMaterial( ArchiveModel, StandardArchiveInfo, PrintInfo, PhysicalInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         pdf = ResourceManager( type=types.PDFType )
-        pdfsm = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_('PDF File (Small)'))
         zip = ResourceManager( type=types.ZipType )
         original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
         large = ImageResourceManager( derived='original', type=types.LargeJpegType )
@@ -1256,7 +1256,7 @@ class ElectronicPoster( ArchiveModel, StandardArchiveInfo, PhysicalInfo, ScreenI
 
     class Archive( StandardArchiveInfo.Archive ):
         pdf = ResourceManager( type=types.PDFType )
-        pdfsm = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager(type=types.PDFType, verbose_name=_('PDF File (Small)'))
         zip = ResourceManager( type=types.ZipType, verbose_name=_( 'InDesign file' ) )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
@@ -1322,7 +1322,7 @@ class VideoConferenceBackground( ArchiveModel, StandardArchiveInfo, PhysicalInfo
 class TechnicalDocument( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         pdf = ResourceManager( type=types.PDFType )
-        pdfsm = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_('PDF File (Small)'))
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.TECHDOC_ROOT
