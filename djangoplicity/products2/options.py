@@ -127,8 +127,8 @@ class VirtualTourOptions( VirtualTourOptionsSC ):
     downloads = (
         (_(u'Images'), {'resources': ('original', 'large', 'screen'),
                         'icons': {'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot'}}),
-        (_(u'File Formats'), {'resources': ('bz2', 'exe'),
-                              'icons': {'bz2': 'install', 'exe': 'install'}}),
+        (_(u'File Formats'), {'resources': ('bz2', 'exe', 'zip'),
+                              'icons': {'bz2': 'install', 'exe': 'install', 'zip': 'zip'}}),
     )
 
 
