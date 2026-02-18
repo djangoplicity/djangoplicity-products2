@@ -127,9 +127,15 @@ class VirtualTourOptions( VirtualTourOptionsSC ):
     downloads = (
         (_(u'Images'), {'resources': ('original', 'large', 'screen'),
                         'icons': {'original': 'phot', 'large': 'phot', 'medium': 'phot', 'screen': 'phot'}}),
-        (_(u'File Formats'), {'resources': ('bz2', 'exe'),
-                              'icons': {'bz2': 'install', 'exe': 'install'}}),
+        (_(u'File Formats'), {'resources': ('bz2', 'exe', 'zip_windows', 'zip_mac'),
+                              'icons': {'bz2': 'install', 'exe': 'install', 'zip_windows': 'zip', 'zip_mac': 'zip'}}),
     )
+
+    class Import(StandardOptions.Import):
+        scan_directories = StandardOptions.Import.scan_directories + [
+            ('zip_windows', ('.zip',)),
+            ('zip_mac', ('.zip',)),
+        ]
 
 
 class ApplicationOptions (StandardOptions):

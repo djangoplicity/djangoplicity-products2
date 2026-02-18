@@ -234,6 +234,8 @@ class VirtualTour(ArchiveModel, TranslationModel, StandardArchiveInfo, PrintInfo
         tour = ResourceManager( type=types.VirtualTourType )
         exe = ResourceManager(type=types.ExeType)
         bz2 = ResourceManager(type=types.Bz2Type)
+        zip_windows = ResourceManager( type=types.ZipType, verbose_name=_( 'Zip file for Windows' ))
+        zip_mac = ResourceManager( type=types.ZipType, verbose_name=_('Zip file for MacOS') )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.VIRTUAL_TOUR_ROOT
