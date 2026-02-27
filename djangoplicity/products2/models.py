@@ -889,6 +889,7 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
         screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
         medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
         thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        webapp = ResourceManager( type=types.WebAppType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MIRROR_ROOT
@@ -919,6 +920,7 @@ class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
         screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
         medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
         thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        webapp = ResourceManager( type=types.WebAppType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.GEMINI_FOCUS_ROOT
@@ -949,6 +951,7 @@ class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo
         screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
         medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
         thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        webapp = ResourceManager( type=types.WebAppType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.NOAO_NEWSLETTER_ROOT
@@ -978,6 +981,7 @@ class TONNewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo 
         screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
         medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
         thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        webapp = ResourceManager( type=types.WebAppType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.TON_NEWSLETTER_ROOT
