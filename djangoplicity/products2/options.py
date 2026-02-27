@@ -88,7 +88,7 @@ class PeriodicalOptions(StandardOptions):
     def get_detail_template(obj):
         if obj.resource_webapp:
             ## Return webapp template in one column similar to virtual tour
-            return "archives/periodicals/detail.html"
+            return "archives/periodicals/detail_webapp.html"
         return None
 
 
