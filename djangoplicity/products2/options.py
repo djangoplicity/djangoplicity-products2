@@ -89,6 +89,10 @@ class PeriodicalOptions(StandardOptions):
         if obj.resource_webapp:
             ## Return webapp template in one column similar to virtual tour
             return "archives/periodicals/detail_webapp.html"
+        # Return None to let GenericView.select_template (defined in djangoplicity/archives/views.py) handle the standard
+        # template resolution and fallback logic. The resolution order goes from the most specific template to the most 
+        # generic one, and the view already implements this fallback chain. Returning None here preserves that behavior 
+        # and keeps the resolution logic centralized in the view.
         return None
 
 
