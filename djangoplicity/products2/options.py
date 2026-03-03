@@ -50,7 +50,7 @@ from djangoplicity.products2.models import *
 from djangoplicity.products2.queries import *
 
 
-def product_options( prefix, about_name, view_name, with_pages, nopaper=False, extra_fields=(), description_template=None ):
+def product_options( prefix, about_name, view_name, with_pages, nopaper=False, extra_fields=(), description_template=None, base_options=StandardOptions ):
     """
     Factory function to generate an archive options file.
     """
@@ -61,7 +61,7 @@ def product_options( prefix, about_name, view_name, with_pages, nopaper=False, e
     else:
         fields = ( 'id', release_date, dimensions ) + extra_fields
 
-    class Options( StandardOptions ):
+    class Options( base_options ):
         urlname_prefix = prefix
 
         info = (
@@ -75,6 +75,25 @@ def product_options( prefix, about_name, view_name, with_pages, nopaper=False, e
         Options.description_template = description_template
 
     return Options
+
+
+class PeriodicalOptions(StandardOptions):
+    description_template = "archives/periodicals/object_description.html"
+
+    class Import(StandardOptions.Import):
+        scan_directories = StandardOptions.Import.scan_directories + [
+            ('webapp', ('',)),
+        ]
+    
+    def get_detail_template(obj):
+        if obj.resource_webapp:
+            ## Return webapp template in one column similar to virtual tour
+            return "archives/periodicals/detail_webapp.html"
+        # Return None to let GenericView.select_template (defined in djangoplicity/archives/views.py) handle the standard
+        # template resolution and fallback logic. The resolution order goes from the most specific template to the most 
+        # generic one, and the view already implements this fallback chain. Returning None here preserves that behavior 
+        # and keeps the resolution logic centralized in the view.
+        return None
 
 
 #######################
@@ -106,10 +125,6 @@ PrintedPosterOptions = product_options( "print_posters", "PrintedPoster", "Print
 ConferencePosterOptions = product_options( "conf_posters", "ConferencePoster", "ConferencePosters", False, extra_fields=(pixel_size, resolution) )
 ElectronicPosterOptions = product_options( "elec_posters", "ElectronicPoster", "ElectronicPosters", False, extra_fields=(pixel_size, resolution) )
 CapJournalOptions = product_options( "capjournals", "CAPjournal", "CAPjournals", True )
-MirrorOptions = product_options( "mirrors", "The Mirror", "The Mirror", True )
-GeminiFocusOptions = product_options( "geminifocus", "Gemini Focus", "Gemini Focus", True )
-NOAONewsletterOptions = product_options( "noaonewsletters", "NOAO Newsletter", "NOAO Newsletters", True )
-TONNewsletterOptions = product_options( "tonnewsletters", "TON Newsletter", "TON Newsletters", True )
 RBSEJournalOptions = product_options("rbsejournals", "RBSE Journal", "RBSE Journals", True)
 STECFNewsletterOptions = product_options( "stecfnewsletters", "STECF Newsletter", "STECF Newsletters", True )
 MessengerOptions = product_options( "messengers", "Messenger", "Messengers", True )
@@ -119,6 +134,11 @@ IMAXFilmOptions = product_options( "imaxfilms", "IMAX Film", "IMAX Films", False
 EPublicationOptions = product_options( "epublications", "ePublication", "ePublications", False, nopaper=True )
 DonationOptions = product_options( "donations", "Donation", "Donations", False )
 SupernovaActivityOptions = product_options( "supernovaactivities", "Supernova Activity", "Supernova Activities", False )
+## Periodicals
+MirrorOptions = product_options( "mirrors", "The Mirror", "The Mirror", True, base_options=PeriodicalOptions )
+GeminiFocusOptions = product_options( "geminifocus", "Gemini Focus", "Gemini Focus", True, base_options=PeriodicalOptions )
+NOAONewsletterOptions = product_options( "noaonewsletters", "NOAO Newsletter", "NOAO Newsletters", True, base_options=PeriodicalOptions )
+TONNewsletterOptions = product_options( "tonnewsletters", "TON Newsletter", "TON Newsletters", True, base_options=PeriodicalOptions )
 
 
 class VirtualTourOptions( VirtualTourOptionsSC ):
