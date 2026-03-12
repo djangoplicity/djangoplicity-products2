@@ -69,6 +69,17 @@ class MirrorQuery (AllPublicQuery):
         return ( qs, query_data )
 
 
+
+class TheScopeQuery (AllPublicQuery):
+    def queryset( self, model, options, request, **kwargs ):
+        now = datetime.now()
+        ( qs, query_data ) = super( TheScopeQuery, self ).queryset( model, options, request, **kwargs )
+        qs = qs.filter(type='thescope')
+        qs = self._filter_datetime( qs, now, 'release_date', False, True )
+        qs = self._filter_datetime( qs, now, 'embargo_date', False, True )
+        return ( qs, query_data )
+
+
 class GeminiFocusQuery (AllPublicQuery):
     def queryset( self, model, options, request, **kwargs ):
         now = datetime.now()
