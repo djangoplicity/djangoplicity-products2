@@ -908,6 +908,37 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
 
 # =============================================================
+# The Scope
+# =============================================================
+class TheScope( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
+        epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        webapp = ResourceManager( type=types.WebAppType )
+
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.THE_SCOPE_ROOT
+            rename_pk = ( 'products2_thescope', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( "The Scope" )
+        verbose_name_plural = _( "The Scope" )
+        ordering = ['-priority', '-id']
+
+    def get_absolute_url( self ):
+        return reverse( 'thescope_detail', args=[str( self.id )] )
+
+    def _get_subtype( self ):
+        return 'TheScope'
+
+
+# =============================================================
 # Gemini Focus
 # =============================================================
 class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
