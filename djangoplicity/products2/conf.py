@@ -95,6 +95,7 @@ class archive_settings:
     MUSIC_ROOT = ARCHIVE_ROOT + 'music'
     PODCAST_ROOT = ARCHIVE_ROOT + 'podcasts'
     MIRROR_ROOT = ARCHIVE_ROOT + 'mirrors'
+    THE_SCOPE_ROOT = ARCHIVE_ROOT + 'thescope'
     GEMINI_FOCUS_ROOT = ARCHIVE_ROOT + 'geminifocus'
     NOAO_NEWSLETTER_ROOT = ARCHIVE_ROOT + 'noaonewsletter'
     TON_NEWSLETTER_ROOT = ARCHIVE_ROOT + 'tonnewsletter'
