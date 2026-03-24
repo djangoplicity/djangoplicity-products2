@@ -18,7 +18,7 @@ from test_project.admin import admin_site
 from djangoplicity.products2.models import Calendar, Logo, Exhibition, Sticker, PostCard, \
     PrintedPoster, ConferencePoster, ElectronicPoster, Merchandise, Presentation, Model3d, \
     AnnualReport, Book, Brochure, Flyer, Handout, Map, PressKit, EducationalMaterial, MiniSite, \
-    MountedImage, PaperModel, PlanetariumShow, Visit, OnlineArtAuthor, Mirror, TechnicalDocument, \
+    MountedImage, PaperModel, PlanetariumShow, Visit, OnlineArtAuthor, Mirror, TheScope, TechnicalDocument, \
     GeminiFocus, NOAONewsletter, TONNewsletter, EducationalProgram, CitizenScienceProgram
 
 from djangoplicity.products2.options import CalendarOptions, LogoOptions, ExhibitionOptions, \
@@ -26,7 +26,7 @@ from djangoplicity.products2.options import CalendarOptions, LogoOptions, Exhibi
     ElectronicPosterOptions, MerchandiseOptions, PresentationOptions, Model3dOptions, \
     AnnualReportOptions, BookOptions, BrochureOptions, FlyerOptions, HandoutOptions, \
     MapOptions, PressKitOptions, EducationalMaterialOptions, MiniSiteOptions, MountedImageOptions, \
-    PaperModelOptions, PlanetariumShowOptions, VisitOptions, OnlineArtAuthorOptions, MirrorOptions, \
+    PaperModelOptions, PlanetariumShowOptions, VisitOptions, OnlineArtAuthorOptions, MirrorOptions, TheScopeOptions, \
     TechnicalDocumentOptions, GeminiFocusOptions, NOAONewsletterOptions, TONNewsletterOptions, EducationalProgramOptions, \
     CitizenScienceProgramOptions
 
@@ -56,6 +56,7 @@ urlpatterns = [
     url( r'^products/minisites/', include('djangoplicity.products2.urls.minisites'), { 'model': MiniSite, 'options': MiniSiteOptions, 'translate': True  } ),
     url( r'^products/citizenscienceprograms/', include('djangoplicity.products2.urls.citizenscienceprograms'), { 'model': CitizenScienceProgram, 'options': CitizenScienceProgramOptions, 'translate': True  } ),
     url( r'^products/mirrors/', include('djangoplicity.products2.urls.mirrors'), { 'model': Mirror, 'options': MirrorOptions, 'translate': True  } ),
+    url( r'^products/the-scope/', include('djangoplicity.products2.urls.thescope'), { 'model': TheScope, 'options': TheScopeOptions, 'translate': True  } ),
     url( r'^products/gemini-focus/', include('djangoplicity.products2.urls.geminifocus'), { 'model': GeminiFocus, 'options': GeminiFocusOptions, 'translate': True  } ),
     url( r'^products/noao-newsletters/', include('djangoplicity.products2.urls.noaonewsletters'), { 'model': NOAONewsletter, 'options': NOAONewsletterOptions, 'translate': True  } ),
     url( r'^products/noao-newsletters/', include('djangoplicity.products2.urls.tonnewsletters'), { 'model': TONNewsletter, 'options': TONNewsletterOptions, 'translate': True  } ),

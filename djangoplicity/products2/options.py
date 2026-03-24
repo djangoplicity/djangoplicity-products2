@@ -139,6 +139,7 @@ MirrorOptions = product_options( "mirrors", "The Mirror", "The Mirror", True, ba
 GeminiFocusOptions = product_options( "geminifocus", "Gemini Focus", "Gemini Focus", True, base_options=PeriodicalOptions )
 NOAONewsletterOptions = product_options( "noaonewsletters", "NOAO Newsletter", "NOAO Newsletters", True, base_options=PeriodicalOptions )
 TONNewsletterOptions = product_options( "tonnewsletters", "TON Newsletter", "TON Newsletters", True, base_options=PeriodicalOptions )
+TheScopeOptions = product_options( "thescope", "The Scope", "The Scope", True, base_options=PeriodicalOptions )
 
 
 class VirtualTourOptions( VirtualTourOptionsSC ):
