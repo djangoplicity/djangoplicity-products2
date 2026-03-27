@@ -234,6 +234,8 @@ class VirtualTour(ArchiveModel, TranslationModel, StandardArchiveInfo, PrintInfo
         tour = ResourceManager( type=types.VirtualTourType )
         exe = ResourceManager(type=types.ExeType)
         bz2 = ResourceManager(type=types.Bz2Type)
+        zip_windows = ResourceManager( type=types.ZipType, verbose_name=_( 'Zip file for Windows' ))
+        zip_mac = ResourceManager( type=types.ZipType, verbose_name=_('Zip file for MacOS') )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.VIRTUAL_TOUR_ROOT
@@ -887,6 +889,7 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
         screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
         medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
         thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        webapp = ResourceManager( type=types.WebAppType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MIRROR_ROOT
@@ -905,6 +908,37 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 
 
 # =============================================================
+# The Scope
+# =============================================================
+class TheScope( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
+    class Archive( StandardArchiveInfo.Archive ):
+        pdf = ResourceManager( type=types.PDFType )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
+        epub = ResourceManager(type=types.EPUBType)
+        original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
+        large = ImageResourceManager( derived='original', type=types.LargeJpegType )
+        screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
+        medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
+        thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        webapp = ResourceManager( type=types.WebAppType )
+
+        class Meta( StandardArchiveInfo.Archive.Meta ):
+            root = archive_settings.THE_SCOPE_ROOT
+            rename_pk = ( 'products2_thescope', 'id' )
+
+    class Meta( StandardArchiveInfo.Meta ):
+        verbose_name = _( "The Scope" )
+        verbose_name_plural = _( "The Scope" )
+        ordering = ['-priority', '-id']
+
+    def get_absolute_url( self ):
+        return reverse( 'thescope_detail', args=[str( self.id )] )
+
+    def _get_subtype( self ):
+        return 'TheScope'
+
+
+# =============================================================
 # Gemini Focus
 # =============================================================
 class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
@@ -917,6 +951,7 @@ class GeminiFocus( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
         screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
         medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
         thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        webapp = ResourceManager( type=types.WebAppType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.GEMINI_FOCUS_ROOT
@@ -947,6 +982,7 @@ class NOAONewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo
         screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
         medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
         thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        webapp = ResourceManager( type=types.WebAppType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.NOAO_NEWSLETTER_ROOT
@@ -976,6 +1012,7 @@ class TONNewsletter( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo 
         screen = ImageResourceManager( derived='original', type=types.ScreensizeJpegType )
         medium = ImageResourceManager( derived='original', type=types.MediumJpegType )
         thumb = ImageResourceManager( derived='original', type=types.ThumbnailJpegType )
+        webapp = ResourceManager( type=types.WebAppType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.TON_NEWSLETTER_ROOT
@@ -1575,6 +1612,7 @@ class Model3d( ArchiveModel, StandardArchiveInfo ):
         model_3d_ply = ResourceManager(type=types.Model3dPLYType)
         model_3d_fbx = ResourceManager(type=types.Model3dFBXType)
         model_3d_blend = ResourceManager(type=types.Model3dBlendType)
+        model_3d_stl = ResourceManager( type=types.Model3dStlType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MODEL3D_FILM_ROOT
