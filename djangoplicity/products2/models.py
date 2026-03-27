@@ -1609,6 +1609,9 @@ class Model3d( ArchiveModel, StandardArchiveInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         model_3d_obj = ResourceManager( type=types.Model3dObjType )
         model_3d_c4d = ResourceManager( type=types.Model3dC4DType )
+        model_3d_ply = ResourceManager(type=types.Model3dPLYType)
+        model_3d_fbx = ResourceManager(type=types.Model3dFBXType)
+        model_3d_blend = ResourceManager(type=types.Model3dBlendType)
         model_3d_stl = ResourceManager( type=types.Model3dStlType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
