@@ -1609,6 +1609,7 @@ class Model3d( ArchiveModel, StandardArchiveInfo ):
     class Archive( StandardArchiveInfo.Archive ):
         model_3d_obj = ResourceManager( type=types.Model3dObjType )
         model_3d_c4d = ResourceManager( type=types.Model3dC4DType )
+        model_3d_stl = ResourceManager( type=types.Model3dStlType )
 
         class Meta( StandardArchiveInfo.Archive.Meta ):
             root = archive_settings.MODEL3D_FILM_ROOT
