@@ -912,8 +912,8 @@ class Mirror( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
 # =============================================================
 class TheScope( ArchiveModel, StandardArchiveInfo, PhysicalInfo, PrintInfo ):
     class Archive( StandardArchiveInfo.Archive ):
-        pdf = ResourceManager( type=types.PDFType )
-        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF File (Small)' ) )
+        pdf = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF Print version' ) )
+        pdfsm = ResourceManager( type=types.PDFType, verbose_name=_( 'PDF Print version (Small)' ) )
         epub = ResourceManager(type=types.EPUBType)
         original = ImageResourceManager( verbose_name=_( 'Fullsize (RGB)' ), type=types.OriginalImageType )
         large = ImageResourceManager( derived='original', type=types.LargeJpegType )
