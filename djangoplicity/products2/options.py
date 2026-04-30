@@ -83,6 +83,7 @@ class PeriodicalOptions(StandardOptions):
     class Import(StandardOptions.Import):
         scan_directories = StandardOptions.Import.scan_directories + [
             ('webapp', ('',)),
+            ('pdf2up', ('.pdf',)),
         ]
     
     def get_detail_template(obj):
@@ -139,7 +140,23 @@ MirrorOptions = product_options( "mirrors", "The Mirror", "The Mirror", True, ba
 GeminiFocusOptions = product_options( "geminifocus", "Gemini Focus", "Gemini Focus", True, base_options=PeriodicalOptions )
 NOAONewsletterOptions = product_options( "noaonewsletters", "NOAO Newsletter", "NOAO Newsletters", True, base_options=PeriodicalOptions )
 TONNewsletterOptions = product_options( "tonnewsletters", "TON Newsletter", "TON Newsletters", True, base_options=PeriodicalOptions )
-TheScopeOptions = product_options( "thescope", "The Scope", "The Scope", True, base_options=PeriodicalOptions )
+TheScopeOptionsSC = product_options( "thescope", "The Scope", "The Scope", True, base_options=PeriodicalOptions )
+
+
+class TheScopeOptions( TheScopeOptionsSC ):
+    downloads = (
+        ( _(u'PDF Files'), {
+            'resources': ('pdf2up', 'pdfsm', 'pdf'), 
+            'icons': { 'pdf2up': 'pdf', 'pdfsm': 'pdf', 'pdf': 'pdf' } 
+        } ),
+        ( _(u'EPUB Files'), {
+            'resources': ('epub',), 
+            'icons': { 'epub': 'epub' } 
+        } ),
+    )
+    
+    def get_detail_template(obj):
+        return "archives/periodicals/detail_webapp.html"
 
 
 class VirtualTourOptions( VirtualTourOptionsSC ):
