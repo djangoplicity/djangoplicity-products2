@@ -83,6 +83,7 @@ class PeriodicalOptions(StandardOptions):
     class Import(StandardOptions.Import):
         scan_directories = StandardOptions.Import.scan_directories + [
             ('webapp', ('',)),
+            ('pdf2up', ('.pdf',)),
         ]
     
     def get_detail_template(obj):
@@ -145,8 +146,8 @@ TheScopeOptionsSC = product_options( "thescope", "The Scope", "The Scope", True,
 class TheScopeOptions( TheScopeOptionsSC ):
     downloads = (
         ( _(u'PDF Files'), {
-            'resources': ('pdf', 'pdfsm'), 
-            'icons': { 'pdf': 'pdf', 'pdfsm': 'pdf' } 
+            'resources': ('pdf2up', 'pdfsm', 'pdf'), 
+            'icons': { 'pdf2up': 'pdf', 'pdfsm': 'pdf', 'pdf': 'pdf' } 
         } ),
         ( _(u'EPUB Files'), {
             'resources': ('epub',), 
