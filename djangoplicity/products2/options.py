@@ -70,6 +70,7 @@ def product_options( prefix, about_name, view_name, with_pages, nopaper=False, e
 
         class Queries(object):
             default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name=view_name )
+            category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name=view_name + ': %s' )
 
     if description_template:
         Options.description_template = description_template
@@ -187,6 +188,7 @@ class ApplicationOptions (StandardOptions):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Applications" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Applications: %s" )
 
 
 class HandoutOptions( StandardOptions ):
@@ -204,6 +206,7 @@ class HandoutOptions( StandardOptions ):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Handouts" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Handouts: %s" )
 
 
 class KidsDrawingOptions ( StandardOptions ):
@@ -221,6 +224,7 @@ class KidsDrawingOptions ( StandardOptions ):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Drawings" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Drawings: %s" )
 
 
 class PressKitOptions (StandardOptions):
@@ -237,6 +241,7 @@ class PressKitOptions (StandardOptions):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Press Kits" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Press Kits: %s" )
 
 
 class MusicOptions (StandardOptions):
@@ -262,6 +267,7 @@ class MusicOptions (StandardOptions):
 
     class Queries(object):
         default = AllPublicQuery(browsers=('normal', 'viewall'), verbose_name='Music')
+        category = ArchiveCategoryQuery(browsers=('normal', 'viewall'), verbose_name='Music: %s')
 
     class Import(StandardOptions.Import):
         scan_directories = [
@@ -298,6 +304,7 @@ class PodcastOptions (StandardOptions):
 
     class Queries(object):
         default = AllPublicQuery(browsers=('normal', 'viewall'), verbose_name='Podcast')
+        category = ArchiveCategoryQuery(browsers=('normal', 'viewall'), verbose_name='Podcast: %s')
 
     class Import(StandardOptions.Import):
         scan_directories = [
@@ -323,6 +330,7 @@ class EducationalMaterialOptions (StandardOptions):
 
     class Queries(object):
         default = AllPublicQuery(browsers=('normal', 'viewall'), verbose_name='Educational Material')
+        category = ArchiveCategoryQuery(browsers=('normal', 'viewall'), verbose_name='Educational Material: %s')
 
 
 class LogoOptions (StandardOptions):
@@ -339,6 +347,7 @@ class LogoOptions (StandardOptions):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Logos" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Logos: %s" )
 
     class Import( StandardOptions.Import ):
         actions = [
@@ -361,6 +370,7 @@ class CalendarOptions (StandardOptions):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Calendars" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Calendars: %s" )
         year = CalendarYearQuery( browsers=( 'normal', 'viewall' ), verbose_name="Calendar: %d")
 
 
@@ -373,6 +383,7 @@ class EducationalProgramOptions( StandardOptions ):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name='Educational Programs' )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name='Educational Programs: %s' )
         current = CurrentQuery( browsers=( 'normal', 'viewall' ), verbose_name='Educational Programs: Current' )
         past = PastQuery( browsers=( 'normal', 'viewall' ), verbose_name='Educational Programs: Past' )
 
@@ -396,6 +407,7 @@ class OnlineArtOptions ( StandardOptions ):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Space Art" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Space Art: %s" )
 
     class Import( StandardOptions.Import ):
         actions = [
@@ -418,6 +430,7 @@ class OnlineArtAuthorOptions ( StandardOptions ):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Artists" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Artists: %s" )
 
 
 class ElectronicCardOptions (StandardOptions):
@@ -436,6 +449,7 @@ class ElectronicCardOptions (StandardOptions):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Electronic Cards" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Electronic Cards: %s" )
 
 
 class ExhibitionOptions ( StandardOptions ):
@@ -453,6 +467,7 @@ class ExhibitionOptions ( StandardOptions ):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Exhibitions" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Exhibitions: %s" )
 
 
 class FITSImageOptions ( StandardOptions ):
@@ -469,6 +484,7 @@ class FITSImageOptions ( StandardOptions ):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="FITS Liberator Images" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="FITS Liberator Images: %s" )
 
 
 class UserVideoOptions ( StandardOptions ):
@@ -494,6 +510,7 @@ class UserVideoOptions ( StandardOptions ):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="User Videos" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="User Videos: %s" )
 
     class Import( object ):
         uploadable = True
@@ -527,6 +544,7 @@ class PresentationOptions ( StandardOptions ):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="Presentations" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="Presentations: %s" )
 
 
 class Model3dOptions ( StandardOptions ):
@@ -564,6 +582,7 @@ class Model3dOptions ( StandardOptions ):
 
     class Queries(object):
         default = AllPublicQuery( browsers=( 'normal', 'viewall' ), verbose_name="3D Models" )
+        category = ArchiveCategoryQuery( browsers=( 'normal', 'viewall' ), verbose_name="3D Models: %s" )
 
     class Import( object ):
         uploadable = True
@@ -597,6 +616,7 @@ class LineArtOptions(StandardOptions):
 
     class Queries(object):
         default = AllPublicQuery(browsers=('normal', 'viewall'), verbose_name='Line Art')
+        category = ArchiveCategoryQuery(browsers=('normal', 'viewall'), verbose_name='Line Art: %s')
 
 
 ###############################

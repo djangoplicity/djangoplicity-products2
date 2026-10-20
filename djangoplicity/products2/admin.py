@@ -169,6 +169,7 @@ def admin_factory( model, options, exclude=['release_date', 'embargo_date', 'cre
     if issubclass( model, StandardArchiveInfo ):
         product_list_display += exclude_fields( ['title', ] )
         product_list_editable += exclude_fields( [ 'title', ] )
+        product_list_filter += exclude_fields( [ 'archive_category', ] )
         product_search_fields = exclude_fields( ['title', 'description', 'credit'] )
         product_richtext_fields += exclude_fields( ['description', 'credit', ] )
         product_fieldsets += [ ( 'Archive', {'fields': exclude_fields( ['title', 'description', 'credit', 'archive_category'] ), } ), ]
