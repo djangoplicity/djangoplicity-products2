@@ -35,8 +35,14 @@ Definition of special archive queries for product archives
 """
 
 from datetime import datetime
-from djangoplicity.archives.contrib.queries import AllPublicQuery, YearQuery
+from django.conf import settings
+from django.db.models import Q
 from django.http import Http404
+from djangoplicity.archives.contrib.queries import AllPublicQuery, CategoryQuery, YearQuery
+from djangoplicity.products2.base.models import ArchiveCategory
+
+if settings.USE_I18N:
+    from djangoplicity.translation.models import TranslationModel
 
 
 class MessengerQuery(AllPublicQuery):
@@ -208,3 +214,44 @@ class PastQuery (AllPublicQuery):
         ( qs, query_data ) = super( PastQuery, self ).queryset( model, options, request, **kwargs )
         qs = qs.filter(validity='past')
         return ( qs, query_data )
+
+
+class ArchiveCategoryQuery( CategoryQuery ):
+    """
+    Query for displaying all public products in a given ArchiveCategory, e.g.:
+
+        .../archive/category/<ArchiveCategory.name>/
+    """
+    def __init__( self, **kwargs ):
+        defaults = {
+            'relation_field': 'archive_category',
+            'url_field': 'name',
+            'title_field': 'fullname',
+            'searchable': True,
+        }
+        defaults.update( kwargs )
+        super( ArchiveCategoryQuery, self ).__init__( **defaults )
+
+    def queryset( self, model, options, request, stringparam=None, **kwargs ):
+        if not stringparam:
+            raise Http404
+
+        try:
+            category = ArchiveCategory.objects.get( name=stringparam )
+        except ArchiveCategory.DoesNotExist:
+            raise Http404
+
+        q_obj = Q( **{ self.relation_field: category } )
+
+        # Translations inherit the categories of their source
+        if settings.USE_I18N and issubclass( model, TranslationModel ):
+            q_obj = q_obj | Q( **{ 'source__%s' % self.relation_field: category } )
+
+        # We want the public filtering of AllPublicQuery but not the
+        # queryset from CategoryQuery, hence we call super(CategoryQuery, self)
+        now = datetime.now()
+        ( qs, _args ) = super( CategoryQuery, self ).queryset( model, options, request, **kwargs )
+        qs = self._filter_datetime( qs, now, 'release_date', False, True )
+        qs = self._filter_datetime( qs, now, 'embargo_date', False, True )
+        qs = qs.filter( published=True ).filter( q_obj ).distinct()
+        return ( qs, { 'category': category } )

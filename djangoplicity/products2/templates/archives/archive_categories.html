@@ -1,0 +1,10 @@
+{% load i18n %}{% if categories %}
+<div class="col-md-12 media-categories">
+    <ul>
+        <li><a href="{{ all_url }}{% if params_nosearch %}?{{ params_nosearch }}{% endif %}"{% if not selected %} class="selected"{% endif %}>{% trans "All" %}</a></li>
+        {% for category in categories %}
+            <li><a href="{{ category.url }}{% if params_nosearch %}?{{ params_nosearch }}{% endif %}"{% if category.selected %} class="selected"{% endif %}>{% trans category.fullname %}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
